@@ -6,17 +6,17 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "artists")
-public class Artist {
+@Table(name = "roles")
+public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "artist_name", nullable = false)
-    private String artistName;
+    @Column(name = "role_name", nullable = false)
+    private String roleName;
 
-    @OneToMany(mappedBy = "artist")
+    @OneToMany(mappedBy = "artistRole")
     private Set<SongArtist> songArtists = new LinkedHashSet<>();
 
     public Integer getId() {
@@ -27,12 +27,12 @@ public class Artist {
         this.id = id;
     }
 
-    public String getArtistName() {
-        return artistName;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setArtistName(String artistName) {
-        this.artistName = artistName;
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 
     public Set<SongArtist> getSongArtists() {
