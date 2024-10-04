@@ -1,5 +1,6 @@
 package com.bartvangestel.songregistrybackend.repository;
 
+import com.bartvangestel.songregistrybackend.model.Album;
 import com.bartvangestel.songregistrybackend.model.Artist;
 import org.springframework.data.jpa.repository.JpaRepository;
 

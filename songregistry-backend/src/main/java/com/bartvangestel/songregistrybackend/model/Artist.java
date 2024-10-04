@@ -1,5 +1,6 @@
 package com.bartvangestel.songregistrybackend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.LinkedHashSet;
@@ -16,6 +17,11 @@ public class Artist {
     @Column(name = "artist_name", nullable = false)
     private String artistName;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "artist")
+    private Set<AlbumArtist> albumArtists = new LinkedHashSet<>();
+
+    @JsonIgnore
     @OneToMany(mappedBy = "artist")
     private Set<SongArtist> songArtists = new LinkedHashSet<>();
 
@@ -33,6 +39,14 @@ public class Artist {
 
     public void setArtistName(String artistName) {
         this.artistName = artistName;
+    }
+
+    public Set<AlbumArtist> getAlbumArtists() {
+        return albumArtists;
+    }
+
+    public void setAlbumArtists(Set<AlbumArtist> albumArtists) {
+        this.albumArtists = albumArtists;
     }
 
     public Set<SongArtist> getSongArtists() {

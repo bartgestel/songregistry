@@ -1,5 +1,6 @@
 package com.bartvangestel.songregistrybackend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.LinkedHashSet;
@@ -18,15 +19,14 @@ public class Song {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "song_genre", nullable = false)
+    @JsonIgnore
     private Genre songGenre;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "album_id", nullable = false)
-    private Album album;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "song")
     private Set<Review> reviews = new LinkedHashSet<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "song")
     private Set<SongArtist> songArtists = new LinkedHashSet<>();
 
@@ -52,14 +52,6 @@ public class Song {
 
     public void setSongGenre(Genre songGenre) {
         this.songGenre = songGenre;
-    }
-
-    public Album getAlbum() {
-        return album;
-    }
-
-    public void setAlbum(Album album) {
-        this.album = album;
     }
 
     public Set<Review> getReviews() {

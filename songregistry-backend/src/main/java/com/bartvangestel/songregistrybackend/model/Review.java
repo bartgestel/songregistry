@@ -48,11 +48,11 @@ public class Review {
         this.rating = rating;
     }
 
-    public com.bartvangestel.songregistrybackend.model.Song getSong() {
+    public Song getSong() {
         return song;
     }
 
-    public void setSong(com.bartvangestel.songregistrybackend.model.Song song) {
+    public void setSong(Song song) {
         this.song = song;
     }
 
