@@ -14,7 +14,7 @@ function Navbar() {
         const searchValue = e.currentTarget.value;
         console.log(`Search value: ${searchValue}`);
         if (searchValue !== '') {
-            axios.get(`http://localhost:8080/artists/name/${searchValue}`)
+            axios.get(`http://localhost:8080/artists/${searchValue}`)
                 .then(response => {
                     console.log('Full API response:', response);
                     console.log('Response data:', response.data);
@@ -23,7 +23,6 @@ function Navbar() {
                     } else {
                         setResults([]);
                     }
-                    console.log('Items:', response.data);
                 })
                 .catch(error => {
                     console.error('API error:', error);

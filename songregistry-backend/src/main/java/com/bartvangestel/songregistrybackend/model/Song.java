@@ -1,3 +1,4 @@
+// src/main/java/com/bartvangestel/songregistrybackend/model/Song.java
 package com.bartvangestel.songregistrybackend.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -22,6 +23,11 @@ public class Song {
     @JsonIgnore
     private Genre songGenre;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "album_id")
+    @JsonIgnore
+    private Album album;
+
     @JsonIgnore
     @OneToMany(mappedBy = "song")
     private Set<Review> reviews = new LinkedHashSet<>();
@@ -29,6 +35,8 @@ public class Song {
     @JsonIgnore
     @OneToMany(mappedBy = "song")
     private Set<SongArtist> songArtists = new LinkedHashSet<>();
+
+    // Getters and setters
 
     public Integer getId() {
         return id;
@@ -54,6 +62,14 @@ public class Song {
         this.songGenre = songGenre;
     }
 
+    public Album getAlbum() {
+        return album;
+    }
+
+    public void setAlbum(Album album) {
+        this.album = album;
+    }
+
     public Set<Review> getReviews() {
         return reviews;
     }
@@ -69,5 +85,4 @@ public class Song {
     public void setSongArtists(Set<SongArtist> songArtists) {
         this.songArtists = songArtists;
     }
-
 }
