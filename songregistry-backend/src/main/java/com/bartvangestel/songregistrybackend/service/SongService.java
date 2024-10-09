@@ -15,6 +15,10 @@ public class SongService {
     }
 
     public List<Song> getSongsByArtistName(String name) {
-        return songRepository.findByArtistNameContainingIgnoreCase(name);
+        return songRepository.findBySongArtists_Artist_ArtistNameContainingIgnoreCase(name);
+    }
+
+    public List<Song> getSongsBySongTitle(String title) {
+        return songRepository.findBySongNameContainingIgnoreCase(title);
     }
 }

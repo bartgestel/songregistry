@@ -15,6 +15,10 @@ public class AlbumService {
     }
 
     public List<Album> getAlbumsByArtistName(String name) {
-        return albumRepository.findByAlbumArtistsContainingIgnoreCase(name);
+        return albumRepository.findByAlbumArtists_Artist_ArtistNameContainingIgnoreCase(name);
+    }
+
+    public List<Album> getAlbumsByAlbumTitle(String title) {
+        return albumRepository.findByAlbumNameContainingIgnoreCase(title);
     }
 }

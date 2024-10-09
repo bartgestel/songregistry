@@ -8,6 +8,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface SongRepository extends JpaRepository<Song, Integer> {
-    @Query("SELECT s FROM Song s JOIN s.songArtists sa JOIN sa.artist ar WHERE LOWER(ar.artistName) LIKE LOWER(CONCAT('%', :artistName, '%'))")
-    List<Song> findByArtistNameContainingIgnoreCase(@Param("artistName") String artistName);
+    List<Song> findBySongArtists_Artist_ArtistNameContainingIgnoreCase(String artistName);
+    List<Song> findBySongNameContainingIgnoreCase(String songTitle);
 }

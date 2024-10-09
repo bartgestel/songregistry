@@ -2,19 +2,19 @@ import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, Command
 import React from 'react';
 import axios from 'axios';
 
-interface Result {
+interface Artist {
     id: number;
-    artist_name: string;
+    artistName: string;
 }
 
 function Navbar() {
-    const [results, setResults] = React.useState<Result[]>([]);
+    const [results, setResults] = React.useState<Artist[]>([]);
 
     const handleSearch = (e: React.FormEvent<HTMLInputElement>) => {
         const searchValue = e.currentTarget.value;
         console.log(`Search value: ${searchValue}`);
         if (searchValue !== '') {
-            axios.get(`http://localhost:8080/artists/${searchValue}`)
+            axios.get(`http://localhost:8080/search/${searchValue}`)
                 .then(response => {
                     console.log('Full API response:', response);
                     console.log('Response data:', response.data);
@@ -29,7 +29,6 @@ function Navbar() {
                     setResults([]);
                 });
         }
-
     }
 
     return (
@@ -39,9 +38,9 @@ function Navbar() {
                 <CommandList>
                     <CommandGroup>
                         {results.length > 0 ? (
-                            results.map((result: Result) => (
+                            results.map((result: Artist) => (
                                 <CommandItem key={result.id}>
-                                    {result.artist_name}
+                                    {result.artistName}
                                 </CommandItem>
                             ))
                         ) : (
