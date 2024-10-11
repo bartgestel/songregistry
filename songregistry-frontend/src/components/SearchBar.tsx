@@ -21,28 +21,34 @@ function SearchBar() {
     const [artists, setArtist] = React.useState<Artist[]>([]);
     const [albums, setAlbum] = React.useState<Album[]>([]);
     const [songs, setSong] = React.useState<Song[]>([]);
+    const [query, setQuery] = React.useState<string>("");
 
-    const handleSearch = async (event: React.FormEvent<HTMLInputElement>) => {
-        const query = (event.target as HTMLInputElement).value;
-        if (query.length === 0) {
-            const searchresult = document.querySelector(".searchresult");
-            if (searchresult) {
-                searchresult.innerHTML = "";
-            }
+    const handleSearch = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        const query = event.target.value;
+        setQuery(query);
+
+        if(query.length === 0) {
+            setArtist([]);
+            setAlbum([]);
+            setSong([]);
             return;
         }
 
-        const response = await axios.get(`http://localhost:8080/search/${query}`);
-        const data = response.data;
+        try{
+            const response = await axios.get(`http://localhost:8080/search/${query}`);
+            const data = response.data;
 
-        setArtist(data.artists);
-        setAlbum(data.albums);
-        setSong(data.songs)
+            setArtist(data.artists);
+            setAlbum(data.albums);
+            setSong(data.songs);
+        }catch{
+            console.log("Error");
+        }
     }
 
     return (
         <div>
-            <input className="searchbar" onInput={handleSearch} placeholder="Search"/>
+            <input className="searchbar" value={query} onInput={handleSearch} placeholder="Search"/>
             <div className="searchresult">
                 {artists.map((artist) => (
                     <div key={artist.id}>
