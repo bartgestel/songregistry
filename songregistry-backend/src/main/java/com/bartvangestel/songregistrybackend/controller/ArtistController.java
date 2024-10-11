@@ -4,7 +4,6 @@ package com.bartvangestel.songregistrybackend.controller;
 import com.bartvangestel.songregistrybackend.model.Album;
 import com.bartvangestel.songregistrybackend.model.Artist;
 import com.bartvangestel.songregistrybackend.model.Song;
-import com.bartvangestel.songregistrybackend.repository.ArtistRepository;
 import com.bartvangestel.songregistrybackend.service.ArtistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/artists")

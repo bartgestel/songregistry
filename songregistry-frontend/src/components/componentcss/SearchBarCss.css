@@ -1,0 +1,11 @@
+.searchbar{
+    width: 40%;
+    height: 40px;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    padding: 5px;
+}

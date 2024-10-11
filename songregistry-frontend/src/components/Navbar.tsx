@@ -1,54 +1,11 @@
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
-import React from 'react';
-import axios from 'axios';
-
-interface Artist {
-    id: number;
-    artistName: string;
-}
+import SearchBar from "@/components/SearchBar.tsx";
 
 function Navbar() {
-    const [results, setResults] = React.useState<Artist[]>([]);
 
-    const handleSearch = (e: React.FormEvent<HTMLInputElement>) => {
-        const searchValue = e.currentTarget.value;
-        console.log(`Search value: ${searchValue}`);
-        if (searchValue !== '') {
-            axios.get(`http://localhost:8080/search/${searchValue}`)
-                .then(response => {
-                    console.log('Full API response:', response);
-                    console.log('Response data:', response.data);
-                    if (response.data && Array.isArray(response.data)) {
-                        setResults(response.data);
-                    } else {
-                        setResults([]);
-                    }
-                })
-                .catch(error => {
-                    console.error('API error:', error);
-                    setResults([]);
-                });
-        }
-    }
 
     return (
         <div>
-            <Command>
-                <CommandInput id="searchBar" placeholder="Search..." onInput={handleSearch} />
-                <CommandList>
-                    <CommandGroup>
-                        {results.length > 0 ? (
-                            results.map((result: Artist) => (
-                                <CommandItem key={result.id}>
-                                    {result.artistName}
-                                </CommandItem>
-                            ))
-                        ) : (
-                            <CommandEmpty>No results found</CommandEmpty>
-                        )}
-                    </CommandGroup>
-                </CommandList>
-            </Command>
+            <SearchBar />
         </div>
     );
 }

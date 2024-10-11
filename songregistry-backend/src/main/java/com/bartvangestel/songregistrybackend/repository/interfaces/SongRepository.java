@@ -1,9 +1,7 @@
-package com.bartvangestel.songregistrybackend.repository;
+package com.bartvangestel.songregistrybackend.repository.interfaces;
 
 import com.bartvangestel.songregistrybackend.model.Song;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 

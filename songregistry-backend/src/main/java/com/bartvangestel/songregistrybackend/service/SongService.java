@@ -1,24 +1,24 @@
 package com.bartvangestel.songregistrybackend.service;
 
 import com.bartvangestel.songregistrybackend.model.Song;
-import com.bartvangestel.songregistrybackend.repository.SongRepository;
+import com.bartvangestel.songregistrybackend.repository.SongDAO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class SongService {
-    private final SongRepository songRepository;
+    private final SongDAO songDAO;
 
-    public SongService(SongRepository songRepository) {
-        this.songRepository = songRepository;
+    public SongService(SongDAO songDAO) {
+        this.songDAO = songDAO;
     }
 
     public List<Song> getSongsByArtistName(String name) {
-        return songRepository.findBySongArtists_Artist_ArtistNameContainingIgnoreCase(name);
+        return songDAO.findSongByArtistName(name);
     }
 
     public List<Song> getSongsBySongTitle(String title) {
-        return songRepository.findBySongNameContainingIgnoreCase(title);
+        return songDAO.findSongByName(title);
     }
 }
