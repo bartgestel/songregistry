@@ -1,7 +1,7 @@
 package com.bartvangestel.songregistrybackend.controller;
 
 import com.bartvangestel.songregistrybackend.model.SearchResult;
-import com.bartvangestel.songregistrybackend.service.SearchService;
+import com.bartvangestel.songregistrybackend.service.SearchServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,10 +14,10 @@ import java.util.List;
 @RequestMapping("/search")
 public class SearchController {
     @Autowired
-    private SearchService searchService;
+    private SearchServiceImpl searchServiceImpl;
 
     @GetMapping("/{search}")
     public List<SearchResult> search(@PathVariable String search) {
-        return searchService.search(search);
+        return searchServiceImpl.search(search);
     }
 }
