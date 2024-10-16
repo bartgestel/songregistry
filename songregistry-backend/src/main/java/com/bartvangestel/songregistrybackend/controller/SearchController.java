@@ -17,7 +17,7 @@ public class SearchController {
     private SearchService searchService;
 
     @GetMapping("/{search}")
-    public SearchResult search(@PathVariable String search) {
+    public List<SearchResult> search(@PathVariable String search) {
         return searchService.search(search);
     }
 }

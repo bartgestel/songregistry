@@ -3,38 +3,37 @@ package com.bartvangestel.songregistrybackend.model;
 import java.util.List;
 
 public class SearchResult {
-    private List<Artist> artists;
-    private List<Album> albums;
-    private List<Song> songs;
+    private String type;
+    private int id;
+    private String name;
 
-    public SearchResult(List<Artist> artists, List<Album> albums, List<Song> songs) {
-        this.artists = artists;
-        this.albums = albums;
-        this.songs = songs;
+    public SearchResult(String type, int id, String name) {
+        this.type = type;
+        this.id = id;
+        this.name = name;
     }
 
-    public List<Artist> getArtists() {
-        return artists;
+    public String getType() {
+        return type;
     }
 
-    public void setArtists(List<Artist> artists) {
-        this.artists = artists;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public List<Album> getAlbums() {
-        return albums;
+    public int getId() {
+        return id;
     }
 
-    public void setAlbums(List<Album> albums) {
-        this.albums = albums;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public List<Song> getSongs() {
-        return songs;
+    public String getName() {
+        return name;
     }
 
-    public void setSongs(List<Song> songs) {
-        this.songs = songs;
+    public void setName(String name) {
+        this.name = name;
     }
-
 }
