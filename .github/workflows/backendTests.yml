@@ -34,9 +34,14 @@ jobs:
     - name: Build backend with Maven
       run: mvn -B clean package --file ${{ github.workspace }}/songregistry-backend/pom.xml
 
+    - name: Install Docker Compose
+      run: |
+          sudo apt-get update
+          sudo apt-get install docker-compose -y
+
     - name: Run tests with Docker Compose
       run: |
-        docker-compose -f ${{ github.workspace }}/docker-compose.yml up --build -d
+        docker-compose -f ${{ github.workspace }}/songregistry-backend/docker-compose.yml up --build -d
         sleep 30 # wait for services to be ready
         mvn -B test --file ${{ github.workspace }}/songregistry-backend/pom.xml
 
