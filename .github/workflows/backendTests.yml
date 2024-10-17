@@ -41,7 +41,7 @@ jobs:
 
     - name: Build Docker image
       run: |
-          docker build -t songregistry-container .
+          docker build -t songregistry-container ./songregistry-backend
 
     - name: Run tests with Docker Compose
       run: |
