@@ -41,7 +41,7 @@ jobs:
 
     - name: Run tests with Docker Compose
       run: |
-        docker-compose -f ${{ github.workspace }}/songregistry-backend/docker-compose.yml up --build -d
+        docker-compose -f ${{ github.workspace }}/songregistry-backend/compose.yaml up --build -d
         sleep 30 # wait for services to be ready
         mvn -B test --file ${{ github.workspace }}/songregistry-backend/pom.xml
 
