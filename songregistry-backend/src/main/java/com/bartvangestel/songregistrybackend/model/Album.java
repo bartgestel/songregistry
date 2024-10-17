@@ -21,6 +21,14 @@ public class Album {
     @OneToMany(mappedBy = "album")
     private Set<AlbumArtist> albumArtists = new LinkedHashSet<>();
 
+    public Album() {
+    }
+
+    public Album(Integer id, String albumName) {
+        this.id = id;
+        this.albumName = albumName;
+    }
+
     public Integer getId() {
         return id;
     }

@@ -6,6 +6,7 @@ import com.bartvangestel.songregistrybackend.model.Artist;
 import com.bartvangestel.songregistrybackend.model.SearchResult;
 import com.bartvangestel.songregistrybackend.model.Song;
 import com.bartvangestel.songregistrybackend.service.interfaces.ISearchService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,8 +14,14 @@ import java.util.List;
 
 @Service
 public class SearchServiceImpl implements ISearchService {
+
+    @Autowired
     private final ArtistServiceImpl artistServiceImpl;
+
+    @Autowired
     private final AlbumServiceImpl albumServiceImpl;
+
+    @Autowired
     private final SongServiceImpl songServiceImpl;
 
     public SearchServiceImpl(ArtistServiceImpl artistServiceImpl, AlbumServiceImpl albumServiceImpl, SongServiceImpl songServiceImpl) {

@@ -36,7 +36,13 @@ public class Song {
     @OneToMany(mappedBy = "song")
     private Set<SongArtist> songArtists = new LinkedHashSet<>();
 
-    // Getters and setters
+    public Song() {
+    }
+
+    public Song(Integer id, String songName) {
+        this.id = id;
+        this.songName = songName;
+    }
 
     public Integer getId() {
         return id;
