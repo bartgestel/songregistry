@@ -39,6 +39,10 @@ jobs:
           sudo apt-get update
           sudo apt-get install docker-compose -y
 
+    - name: Build Docker image
+      run: |
+          docker build -t songregistry-container .
+
     - name: Run tests with Docker Compose
       run: |
         docker-compose -f ${{ github.workspace }}/songregistry-backend/compose.yaml up --build -d
