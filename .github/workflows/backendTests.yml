@@ -58,7 +58,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build
-    if: github.reg == 'refs/heads/master'
+    if: github.ref == 'refs/heads/master'
 
     steps:
       - uses: actions/checkout@v4
