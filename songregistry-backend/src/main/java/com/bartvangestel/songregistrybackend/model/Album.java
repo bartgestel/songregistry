@@ -7,30 +7,26 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "artists")
-public class Artist {
+@Table(name = "albums")
+public class Album {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "artist_name", nullable = false)
-    private String artistName;
+    @Column(name = "album_name", nullable = false)
+    private String albumName;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "artist")
+    @OneToMany(mappedBy = "album")
     private Set<AlbumArtist> albumArtists = new LinkedHashSet<>();
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "artist")
-    private Set<SongArtist> songArtists = new LinkedHashSet<>();
-
-    public Artist() {
+    public Album() {
     }
 
-    public Artist(Integer id, String artistName) {
+    public Album(Integer id, String albumName) {
         this.id = id;
-        this.artistName = artistName;
+        this.albumName = albumName;
     }
 
     public Integer getId() {
@@ -41,12 +37,12 @@ public class Artist {
         this.id = id;
     }
 
-    public String getArtistName() {
-        return artistName;
+    public String getAlbumName() {
+        return albumName;
     }
 
-    public void setArtistName(String artistName) {
-        this.artistName = artistName;
+    public void setAlbumName(String albumName) {
+        this.albumName = albumName;
     }
 
     public Set<AlbumArtist> getAlbumArtists() {
@@ -55,14 +51,6 @@ public class Artist {
 
     public void setAlbumArtists(Set<AlbumArtist> albumArtists) {
         this.albumArtists = albumArtists;
-    }
-
-    public Set<SongArtist> getSongArtists() {
-        return songArtists;
-    }
-
-    public void setSongArtists(Set<SongArtist> songArtists) {
-        this.songArtists = songArtists;
     }
 
 }

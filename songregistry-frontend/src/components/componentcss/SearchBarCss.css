@@ -1,0 +1,36 @@
+.searchbar{
+    width: 400px;
+    height: 40px;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    padding: 5px;
+}
+
+.searchresult {
+    width: 400px;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+    position: absolute;
+    z-index: 1000;
+    display: none; /* Hide by default */
+}
+
+.searchresult.visible {
+    display: block; /* Show when there are search results */
+}
+
+.searchitem{
+    margin: 5px;
+}
+
+.searchitem:hover{
+    background-color: #e1e1e1;
+    cursor: pointer;
+}
