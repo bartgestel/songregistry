@@ -53,4 +53,4 @@ jobs:
         mvn -B test --file ${{ github.workspace }}/songregistry-backend/pom.xml
 
     - name: Shut down services
-      run: docker-compose -f ${{ github.workspace }}/songregistrty-backend/compose.yaml down
+      run: docker-compose -f ${{ github.workspace }}/songregistry-backend/compose.yaml down
