@@ -58,7 +58,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build
-    if: github.reg === 'refs/heads/master'
+    if: github.reg == 'refs/heads/master'
 
     steps:
       - uses: actions/checkout@v4
@@ -67,7 +67,7 @@ jobs:
         uses: docker/login-action@v2
         with:
          username: ${{ secrets.DOCKER_USERNAME }}
-         password: ${{ secrect.DOCKER_PASSWORD }}
+         password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v6.9.0
