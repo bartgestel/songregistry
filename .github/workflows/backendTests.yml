@@ -38,6 +38,9 @@ jobs:
       run: |
           sudo apt-get update
           sudo apt-get install docker-compose -y
+          
+    - name: Shut down existing services
+      run: docker-compose -f ${{ github.workspace }}/songregistry/songregistry-backend/compose.yaml down || true
 
     - name: Build Docker image
       run: |
