@@ -40,7 +40,7 @@ jobs:
           sudo apt-get install docker-compose -y
           
     - name: Shut down existing services
-      run: docker-compose -f ${{ github.workspace }}/songregistry/songregistry-backend/compose.yaml down || true
+      run: docker-compose -f ${{ github.workspace }}/songregistry-backend/compose.yaml down || true
 
     - name: Build Docker image
       run: |
@@ -53,4 +53,4 @@ jobs:
         mvn -B test --file ${{ github.workspace }}/songregistry-backend/pom.xml
 
     - name: Shut down services
-      run: docker-compose -f ${{ github.workspace }}/docker-compose.yml down
+      run: docker-compose -f ${{ github.workspace }}/songregistrty-backend/docker-compose.yml down
