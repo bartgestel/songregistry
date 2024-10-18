@@ -17,8 +17,7 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: root
           MYSQL_DATABASE: songregistry
-          MYSQL_USER: bart
-          MYSQL_PASSWORD: root
+          MYSQL_USER: root
         ports:
           - 3306:3306
     steps:
