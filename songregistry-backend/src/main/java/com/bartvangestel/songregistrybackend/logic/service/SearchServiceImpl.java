@@ -1,11 +1,11 @@
 // src/main/java/com/bartvangestel/songregistrybackend/service/SearchService.java
-package com.bartvangestel.songregistrybackend.service;
+package com.bartvangestel.songregistrybackend.logic.service;
 
 import com.bartvangestel.songregistrybackend.model.Album;
 import com.bartvangestel.songregistrybackend.model.Artist;
 import com.bartvangestel.songregistrybackend.model.SearchResult;
 import com.bartvangestel.songregistrybackend.model.Song;
-import com.bartvangestel.songregistrybackend.service.interfaces.ISearchService;
+import com.bartvangestel.songregistrybackend.logic.service.interfaces.ISearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

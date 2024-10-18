@@ -1,4 +1,4 @@
-package com.bartvangestel.songregistrybackend.repository;
+package com.bartvangestel.songregistrybackend.dal.repository;
 
 import com.bartvangestel.songregistrybackend.model.Song;
 import org.springframework.data.jpa.repository.JpaRepository;

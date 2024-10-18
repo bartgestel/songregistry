@@ -1,7 +1,7 @@
-package com.bartvangestel.songregistrybackend.controller;
+package com.bartvangestel.songregistrybackend.presentation.controller;
 
 import com.bartvangestel.songregistrybackend.model.SearchResult;
-import com.bartvangestel.songregistrybackend.service.SearchServiceImpl;
+import com.bartvangestel.songregistrybackend.logic.service.SearchServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

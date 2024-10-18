@@ -1,9 +1,7 @@
 package com.bartvangestel.songregistrybackend.service;
 
-import com.bartvangestel.songregistrybackend.model.Album;
-import com.bartvangestel.songregistrybackend.model.AlbumArtist;
-import com.bartvangestel.songregistrybackend.model.Artist;
-import com.bartvangestel.songregistrybackend.repository.AlbumRepository;
+import com.bartvangestel.songregistrybackend.logic.service.AlbumServiceImpl;
+import com.bartvangestel.songregistrybackend.dal.repository.AlbumRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,13 +11,8 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 @SpringBootTest(properties = {

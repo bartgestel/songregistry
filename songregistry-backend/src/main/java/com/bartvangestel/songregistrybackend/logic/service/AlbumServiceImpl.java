@@ -1,8 +1,8 @@
-package com.bartvangestel.songregistrybackend.service;
+package com.bartvangestel.songregistrybackend.logic.service;
 
 import com.bartvangestel.songregistrybackend.model.Album;
-import com.bartvangestel.songregistrybackend.repository.AlbumRepository;
-import com.bartvangestel.songregistrybackend.service.interfaces.IAlbumService;
+import com.bartvangestel.songregistrybackend.dal.repository.AlbumRepository;
+import com.bartvangestel.songregistrybackend.logic.service.interfaces.IAlbumService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

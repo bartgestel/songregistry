@@ -1,11 +1,14 @@
 // src/test/java/com/bartvangestel/songregistrybackend/service/SearchServiceImplTest.java
 package com.bartvangestel.songregistrybackend.service;
 
+import com.bartvangestel.songregistrybackend.logic.service.AlbumServiceImpl;
+import com.bartvangestel.songregistrybackend.logic.service.ArtistServiceImpl;
+import com.bartvangestel.songregistrybackend.logic.service.SearchServiceImpl;
+import com.bartvangestel.songregistrybackend.logic.service.SongServiceImpl;
 import com.bartvangestel.songregistrybackend.model.Album;
 import com.bartvangestel.songregistrybackend.model.Artist;
 import com.bartvangestel.songregistrybackend.model.SearchResult;
 import com.bartvangestel.songregistrybackend.model.Song;
-import com.bartvangestel.songregistrybackend.service.interfaces.ISearchService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

@@ -1,10 +1,10 @@
-package com.bartvangestel.songregistrybackend.controller;
+package com.bartvangestel.songregistrybackend.presentation.controller;
 
 
 import com.bartvangestel.songregistrybackend.model.Album;
 import com.bartvangestel.songregistrybackend.model.Artist;
 import com.bartvangestel.songregistrybackend.model.Song;
-import com.bartvangestel.songregistrybackend.service.ArtistServiceImpl;
+import com.bartvangestel.songregistrybackend.logic.service.ArtistServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
