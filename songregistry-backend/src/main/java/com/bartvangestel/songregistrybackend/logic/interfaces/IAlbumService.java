@@ -1,4 +1,4 @@
-package com.bartvangestel.songregistrybackend.service.interfaces;
+package com.bartvangestel.songregistrybackend.logic.interfaces;
 
 import com.bartvangestel.songregistrybackend.model.Album;
 

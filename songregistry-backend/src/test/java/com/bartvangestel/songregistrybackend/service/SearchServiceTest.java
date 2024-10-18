@@ -1,11 +1,14 @@
 // src/test/java/com/bartvangestel/songregistrybackend/service/SearchServiceImplTest.java
 package com.bartvangestel.songregistrybackend.service;
 
+import com.bartvangestel.songregistrybackend.logic.interfaces.IAlbumService;
+import com.bartvangestel.songregistrybackend.logic.interfaces.IArtistService;
+import com.bartvangestel.songregistrybackend.logic.interfaces.ISongService;
+import com.bartvangestel.songregistrybackend.logic.service.SearchService;
 import com.bartvangestel.songregistrybackend.model.Album;
 import com.bartvangestel.songregistrybackend.model.Artist;
 import com.bartvangestel.songregistrybackend.model.SearchResult;
 import com.bartvangestel.songregistrybackend.model.Song;
-import com.bartvangestel.songregistrybackend.service.interfaces.ISearchService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -18,19 +21,19 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-class SearchServiceImplTest {
+class SearchServiceTest {
 
     @InjectMocks
-    private SearchServiceImpl searchService;
+    private SearchService searchService;
 
     @Mock
-    private ArtistServiceImpl artistServiceImpl;
+    private IArtistService artistService;
 
     @Mock
-    private AlbumServiceImpl albumServiceImpl;
+    private IAlbumService albumService;
 
     @Mock
-    private SongServiceImpl songServiceImpl;
+    private ISongService songService;
 
     @BeforeEach
     void setUp() {
@@ -45,9 +48,9 @@ class SearchServiceImplTest {
         List<Artist> artists = new ArrayList<>();
         artists.add(artist);
 
-        when(artistServiceImpl.getArtistByName(search)).thenReturn(artists);
-        when(albumServiceImpl.getAlbumsByAlbumTitle(search)).thenReturn(new ArrayList<>());
-        when(songServiceImpl.getSongsBySongTitle(search)).thenReturn(new ArrayList<>());
+        when(artistService.getArtistByName(search)).thenReturn(artists);
+        when(albumService.getAlbumsByAlbumTitle(search)).thenReturn(new ArrayList<>());
+        when(songService.getSongsBySongTitle(search)).thenReturn(new ArrayList<>());
 
         // Act
         List<SearchResult> results = searchService.search(search);
@@ -67,9 +70,9 @@ class SearchServiceImplTest {
         List<Album> albums = new ArrayList<>();
         albums.add(album);
 
-        when(artistServiceImpl.getArtistByName(search)).thenReturn(new ArrayList<>());
-        when(albumServiceImpl.getAlbumsByAlbumTitle(search)).thenReturn(albums);
-        when(songServiceImpl.getSongsBySongTitle(search)).thenReturn(new ArrayList<>());
+        when(artistService.getArtistByName(search)).thenReturn(new ArrayList<>());
+        when(albumService.getAlbumsByAlbumTitle(search)).thenReturn(albums);
+        when(songService.getSongsBySongTitle(search)).thenReturn(new ArrayList<>());
 
         // Act
         List<SearchResult> results = searchService.search(search);
@@ -89,9 +92,9 @@ class SearchServiceImplTest {
         List<Song> songs = new ArrayList<>();
         songs.add(song);
 
-        when(artistServiceImpl.getArtistByName(search)).thenReturn(new ArrayList<>());
-        when(albumServiceImpl.getAlbumsByAlbumTitle(search)).thenReturn(new ArrayList<>());
-        when(songServiceImpl.getSongsBySongTitle(search)).thenReturn(songs);
+        when(artistService.getArtistByName(search)).thenReturn(new ArrayList<>());
+        when(albumService.getAlbumsByAlbumTitle(search)).thenReturn(new ArrayList<>());
+        when(songService.getSongsBySongTitle(search)).thenReturn(songs);
 
         // Act
         List<SearchResult> results = searchService.search(search);
@@ -120,9 +123,9 @@ class SearchServiceImplTest {
         List<Song> songs = new ArrayList<>();
         songs.add(song);
 
-        when(artistServiceImpl.getArtistByName(search)).thenReturn(artists);
-        when(albumServiceImpl.getAlbumsByAlbumTitle(search)).thenReturn(albums);
-        when(songServiceImpl.getSongsBySongTitle(search)).thenReturn(songs);
+        when(artistService.getArtistByName(search)).thenReturn(artists);
+        when(albumService.getAlbumsByAlbumTitle(search)).thenReturn(albums);
+        when(songService.getSongsBySongTitle(search)).thenReturn(songs);
 
         // Act
         List<SearchResult> results = searchService.search(search);

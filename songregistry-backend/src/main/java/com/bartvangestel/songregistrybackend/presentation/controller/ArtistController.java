@@ -1,11 +1,10 @@
-package com.bartvangestel.songregistrybackend.controller;
+package com.bartvangestel.songregistrybackend.presentation.controller;
 
 
 import com.bartvangestel.songregistrybackend.model.Album;
 import com.bartvangestel.songregistrybackend.model.Artist;
 import com.bartvangestel.songregistrybackend.model.Song;
-import com.bartvangestel.songregistrybackend.service.ArtistServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.bartvangestel.songregistrybackend.logic.service.ArtistService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,27 +15,30 @@ import java.util.List;
 @RestController
 @RequestMapping("/artists")
 public class ArtistController {
-    @Autowired
-    private ArtistServiceImpl artistServiceImpl;
+    private final ArtistService artistService;
+
+    public ArtistController(ArtistService artistService) {
+        this.artistService = artistService;
+    }
 
     @GetMapping
     public List<Artist> getArtists() {
-        return artistServiceImpl.getArtists();
+        return artistService.getArtists();
     }
 
     @GetMapping("/{name}")
     public List<Artist> getArtistByName(@PathVariable String name) {
-        return artistServiceImpl.getArtistByName(name);
+        return artistService.getArtistByName(name);
     }
 
     @GetMapping("/{name}/albums")
     public List<Album> getAlbumsByArtistName(@PathVariable String name) {
-        return artistServiceImpl.getAlbumsByArtistName(name);
+        return artistService.getAlbumsByArtistName(name);
     }
 
     @GetMapping("/{name}/songs")
     public List<Song> getSongsByArtistName(@PathVariable String name) {
-        return artistServiceImpl.getSongsByArtistName(name);
+        return artistService.getSongsByArtistName(name);
     }
 
 
