@@ -1,5 +1,6 @@
 package com.bartvangestel.songregistrybackend.logic.service;
 
+import com.bartvangestel.songregistrybackend.logic.interfaces.ISongDAL;
 import com.bartvangestel.songregistrybackend.model.Song;
 import com.bartvangestel.songregistrybackend.dal.repository.SongRepository;
 import com.bartvangestel.songregistrybackend.logic.interfaces.ISongService;
@@ -9,18 +10,22 @@ import java.util.List;
 
 @Service
 public class SongService implements ISongService {
-    private final SongRepository songRepository;
+    private final ISongDAL songDAL;
 
-    public SongService(SongRepository songRepository) {
-        this.songRepository = songRepository;
+    public SongService(ISongDAL songDAL) {
+        this.songDAL = songDAL;
+    }
+
+    public List<Song> getSongs() {
+        return songDAL.getSongs();
     }
 
     @Override
     public List<Song> getSongsByArtistName(String name) {
-        return songRepository.findBySongArtists_Artist_ArtistNameContainingIgnoreCase(name);
+        return songDAL.getSongsByArtistName(name);
     }
     @Override
     public List<Song> getSongsBySongTitle(String title) {
-        return songRepository.findBySongNameContainingIgnoreCase(title);
+        return songDAL.getSongsBySongTitle(title);
     }
 }

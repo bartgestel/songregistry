@@ -1,6 +1,9 @@
 // src/main/java/com/bartvangestel/songregistrybackend/service/SearchService.java
 package com.bartvangestel.songregistrybackend.logic.service;
 
+import com.bartvangestel.songregistrybackend.logic.interfaces.IAlbumService;
+import com.bartvangestel.songregistrybackend.logic.interfaces.IArtistService;
+import com.bartvangestel.songregistrybackend.logic.interfaces.ISongService;
 import com.bartvangestel.songregistrybackend.model.Album;
 import com.bartvangestel.songregistrybackend.model.Artist;
 import com.bartvangestel.songregistrybackend.model.SearchResult;
@@ -16,15 +19,15 @@ import java.util.List;
 public class SearchService implements ISearchService {
 
     @Autowired
-    private final ArtistService artistService;
+    private final IArtistService artistService;
 
     @Autowired
-    private final AlbumService albumService;
+    private final IAlbumService albumService;
 
     @Autowired
-    private final SongService songService;
+    private final ISongService songService;
 
-    public SearchService(ArtistService artistService, AlbumService albumService, SongService songService) {
+    public SearchService(IArtistService artistService, IAlbumService albumService, ISongService songService) {
         this.artistService = artistService;
         this.albumService = albumService;
         this.songService = songService;
