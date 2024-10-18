@@ -1,12 +1,13 @@
-import Navbar from '../components/Navbar'
+import Navbar from "../components/Navbar";
+import HomeArtists from "../components/HomeArtists";
 
 function Home() {
-    return (
-        <div>
-            <Navbar/>
-            <h1>Home test</h1>
-        </div>
-    )
+  return (
+    <div className="w-full">
+      <Navbar />
+      <HomeArtists />
+    </div>
+  );
 }
 
-export default Home
+export default Home;
