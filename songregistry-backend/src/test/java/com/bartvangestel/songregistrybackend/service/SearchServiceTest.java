@@ -1,10 +1,10 @@
 // src/test/java/com/bartvangestel/songregistrybackend/service/SearchServiceImplTest.java
 package com.bartvangestel.songregistrybackend.service;
 
-import com.bartvangestel.songregistrybackend.logic.service.AlbumService;
-import com.bartvangestel.songregistrybackend.logic.service.ArtistService;
+import com.bartvangestel.songregistrybackend.logic.interfaces.IAlbumService;
+import com.bartvangestel.songregistrybackend.logic.interfaces.IArtistService;
+import com.bartvangestel.songregistrybackend.logic.interfaces.ISongService;
 import com.bartvangestel.songregistrybackend.logic.service.SearchService;
-import com.bartvangestel.songregistrybackend.logic.service.SongService;
 import com.bartvangestel.songregistrybackend.model.Album;
 import com.bartvangestel.songregistrybackend.model.Artist;
 import com.bartvangestel.songregistrybackend.model.SearchResult;
@@ -27,13 +27,13 @@ class SearchServiceTest {
     private SearchService searchService;
 
     @Mock
-    private ArtistService artistService;
+    private IArtistService artistService;
 
     @Mock
-    private AlbumService albumService;
+    private IAlbumService albumService;
 
     @Mock
-    private SongService songService;
+    private ISongService songService;
 
     @BeforeEach
     void setUp() {
