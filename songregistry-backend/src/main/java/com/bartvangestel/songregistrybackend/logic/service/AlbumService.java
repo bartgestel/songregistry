@@ -2,16 +2,16 @@ package com.bartvangestel.songregistrybackend.logic.service;
 
 import com.bartvangestel.songregistrybackend.model.Album;
 import com.bartvangestel.songregistrybackend.dal.repository.AlbumRepository;
-import com.bartvangestel.songregistrybackend.logic.service.interfaces.IAlbumService;
+import com.bartvangestel.songregistrybackend.logic.interfaces.IAlbumService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class AlbumServiceImpl implements IAlbumService {
+public class AlbumService implements IAlbumService {
     private final AlbumRepository albumRepository;
 
-    public AlbumServiceImpl(AlbumRepository albumRepository) {
+    public AlbumService(AlbumRepository albumRepository) {
         this.albumRepository = albumRepository;
     }
 

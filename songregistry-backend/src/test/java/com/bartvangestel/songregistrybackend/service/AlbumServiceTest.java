@@ -1,6 +1,6 @@
 package com.bartvangestel.songregistrybackend.service;
 
-import com.bartvangestel.songregistrybackend.logic.service.AlbumServiceImpl;
+import com.bartvangestel.songregistrybackend.logic.service.AlbumService;
 import com.bartvangestel.songregistrybackend.dal.repository.AlbumRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,7 +28,7 @@ public class AlbumServiceTest {
     private AlbumRepository albumRepository;
 
     @InjectMocks
-    private AlbumServiceImpl albumService;
+    private AlbumService albumService;
 
     @BeforeEach
     void setUp() {
