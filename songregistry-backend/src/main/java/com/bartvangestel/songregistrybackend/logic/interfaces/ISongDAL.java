@@ -1,7 +1,6 @@
 package com.bartvangestel.songregistrybackend.logic.interfaces;
 
-import com.bartvangestel.songregistrybackend.model.Song;
-import org.springframework.stereotype.Repository;
+import com.bartvangestel.songregistrybackend.dal.model.Song;
 
 import java.util.List;
 

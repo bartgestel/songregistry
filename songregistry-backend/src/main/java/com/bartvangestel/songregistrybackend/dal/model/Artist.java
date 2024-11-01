@@ -1,4 +1,4 @@
-package com.bartvangestel.songregistrybackend.model;
+package com.bartvangestel.songregistrybackend.dal.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -17,8 +17,7 @@ public class Artist {
     @Column(name = "artist_name", nullable = false)
     private String artistName;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "artist")
+    @OneToMany(mappedBy = "artist", fetch = FetchType.EAGER)
     private Set<AlbumArtist> albumArtists = new LinkedHashSet<>();
 
     @JsonIgnore

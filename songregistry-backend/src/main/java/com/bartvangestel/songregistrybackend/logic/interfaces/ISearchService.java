@@ -1,9 +1,9 @@
 package com.bartvangestel.songregistrybackend.logic.interfaces;
 
-import com.bartvangestel.songregistrybackend.model.SearchResult;
+import com.bartvangestel.songregistrybackend.DTO.SearchResultDTO;
 
 import java.util.List;
 
 public interface ISearchService {
-    List<SearchResult> search(String search);
+    List<SearchResultDTO> search(String search);
 }

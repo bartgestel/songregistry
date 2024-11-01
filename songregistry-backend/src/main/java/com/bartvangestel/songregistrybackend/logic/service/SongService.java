@@ -1,12 +1,13 @@
 package com.bartvangestel.songregistrybackend.logic.service;
 
+import com.bartvangestel.songregistrybackend.DTO.SongDTO;
 import com.bartvangestel.songregistrybackend.logic.interfaces.ISongDAL;
-import com.bartvangestel.songregistrybackend.model.Song;
-import com.bartvangestel.songregistrybackend.dal.repository.SongRepository;
+import com.bartvangestel.songregistrybackend.dal.model.Song;
 import com.bartvangestel.songregistrybackend.logic.interfaces.ISongService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class SongService implements ISongService {
@@ -16,16 +17,26 @@ public class SongService implements ISongService {
         this.songDAL = songDAL;
     }
 
-    public List<Song> getSongs() {
-        return songDAL.getSongs();
+    public List<SongDTO> getSongs() {
+        List<Song> songs = songDAL.getSongs();
+        return songs.stream().map(this::convertToDTO).collect(Collectors.toList());
     }
 
     @Override
-    public List<Song> getSongsByArtistName(String name) {
-        return songDAL.getSongsByArtistName(name);
+    public List<SongDTO> getSongsByArtistName(String name) {
+        List<Song> songs = songDAL.getSongsByArtistName(name);
+        return songs.stream().map(this::convertToDTO).collect(Collectors.toList());
     }
     @Override
-    public List<Song> getSongsBySongTitle(String title) {
-        return songDAL.getSongsBySongTitle(title);
+    public List<SongDTO> getSongsBySongTitle(String title) {
+        List<Song> songs = songDAL.getSongsBySongTitle(title);
+        return songs.stream().map(this::convertToDTO).collect(Collectors.toList());
+    }
+
+    private SongDTO convertToDTO(Song song) {
+        SongDTO songDTO = new SongDTO();
+        songDTO.setId(song.getId());
+        songDTO.setTitle(song.getTitle());
+        return songDTO;
     }
 }

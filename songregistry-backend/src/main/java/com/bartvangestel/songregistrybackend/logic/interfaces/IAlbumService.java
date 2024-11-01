@@ -1,10 +1,12 @@
 package com.bartvangestel.songregistrybackend.logic.interfaces;
 
-import com.bartvangestel.songregistrybackend.model.Album;
+import com.bartvangestel.songregistrybackend.DTO.AlbumDTO;
+import com.bartvangestel.songregistrybackend.dal.model.Album;
 
 import java.util.List;
 
 public interface IAlbumService {
-    List<Album> getAlbumsByArtistName(String artistName);
-    List<Album> getAlbumsByAlbumTitle(String albumTitle);
+    List<AlbumDTO> getAlbumsByArtistName(String artistName);
+    List<AlbumDTO> getAlbumsByAlbumTitle(String albumTitle);
+    List<AlbumDTO> getAlbumsForHome();
 }

@@ -1,6 +1,5 @@
-package com.bartvangestel.songregistrybackend.model;
+package com.bartvangestel.songregistrybackend.dal.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.LinkedHashSet;
@@ -17,8 +16,7 @@ public class Album {
     @Column(name = "album_name", nullable = false)
     private String albumName;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "album")
+    @OneToMany(mappedBy = "album", fetch = FetchType.EAGER)
     private Set<AlbumArtist> albumArtists = new LinkedHashSet<>();
 
     public Album() {
