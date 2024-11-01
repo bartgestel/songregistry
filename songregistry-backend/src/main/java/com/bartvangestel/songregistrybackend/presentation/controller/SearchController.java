@@ -1,6 +1,6 @@
 package com.bartvangestel.songregistrybackend.presentation.controller;
 
-import com.bartvangestel.songregistrybackend.model.SearchResult;
+import com.bartvangestel.songregistrybackend.DTO.SearchResultDTO;
 import com.bartvangestel.songregistrybackend.logic.service.SearchService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +19,7 @@ public class SearchController {
     }
 
     @GetMapping("/{search}")
-    public List<SearchResult> search(@PathVariable String search) {
+    public List<SearchResultDTO> search(@PathVariable String search) {
         return searchService.search(search);
     }
 }

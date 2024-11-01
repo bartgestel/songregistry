@@ -2,7 +2,7 @@ package com.bartvangestel.songregistrybackend.dal;
 
 import com.bartvangestel.songregistrybackend.dal.repository.AlbumRepository;
 import com.bartvangestel.songregistrybackend.logic.interfaces.IAlbumDAL;
-import com.bartvangestel.songregistrybackend.model.Album;
+import com.bartvangestel.songregistrybackend.dal.model.Album;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -25,5 +25,9 @@ public class AlbumDAL implements IAlbumDAL {
 
     public List<Album> getAlbumsByAlbumTitle(String albumTitle) {
         return albumRepository.findByAlbumNameContainingIgnoreCase(albumTitle);
+    }
+
+    public List<Album> getAlbumsForHome() {
+        return albumRepository.findTop6ByOrderByIdAsc();
     }
 }

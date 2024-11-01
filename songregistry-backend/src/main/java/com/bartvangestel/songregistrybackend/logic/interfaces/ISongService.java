@@ -1,10 +1,11 @@
 package com.bartvangestel.songregistrybackend.logic.interfaces;
 
-import com.bartvangestel.songregistrybackend.model.Song;
+import com.bartvangestel.songregistrybackend.DTO.SongDTO;
+import com.bartvangestel.songregistrybackend.dal.model.Song;
 
 import java.util.List;
 
 public interface ISongService {
-    List<Song> getSongsByArtistName(String name);
-    List<Song> getSongsBySongTitle(String title);
+    List<SongDTO> getSongsByArtistName(String name);
+    List<SongDTO> getSongsBySongTitle(String title);
 }

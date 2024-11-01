@@ -2,7 +2,7 @@ package com.bartvangestel.songregistrybackend.dal;
 
 import com.bartvangestel.songregistrybackend.dal.repository.SongRepository;
 import com.bartvangestel.songregistrybackend.logic.interfaces.ISongDAL;
-import com.bartvangestel.songregistrybackend.model.Song;
+import com.bartvangestel.songregistrybackend.dal.model.Song;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

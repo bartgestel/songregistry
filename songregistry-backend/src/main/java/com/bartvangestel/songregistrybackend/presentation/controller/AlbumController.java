@@ -1,7 +1,7 @@
 package com.bartvangestel.songregistrybackend.presentation.controller;
 
+import com.bartvangestel.songregistrybackend.DTO.AlbumDTO;
 import com.bartvangestel.songregistrybackend.logic.service.AlbumService;
-import com.bartvangestel.songregistrybackend.model.Album;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +19,12 @@ public class AlbumController {
     }
 
     @GetMapping()
-    public List<Album> getAlbums() {
+    public List<AlbumDTO> getAlbums() {
         return albumService.getAlbums();
+    }
+
+    @GetMapping("/home")
+    public List<AlbumDTO> getAlbumsForHome() {
+        return albumService.getAlbumsForHome();
     }
 }

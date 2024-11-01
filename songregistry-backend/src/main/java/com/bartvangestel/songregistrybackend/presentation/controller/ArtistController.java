@@ -1,9 +1,11 @@
 package com.bartvangestel.songregistrybackend.presentation.controller;
 
 
-import com.bartvangestel.songregistrybackend.model.Album;
-import com.bartvangestel.songregistrybackend.model.Artist;
-import com.bartvangestel.songregistrybackend.model.Song;
+import com.bartvangestel.songregistrybackend.DTO.AlbumDTO;
+import com.bartvangestel.songregistrybackend.DTO.ArtistDTO;
+import com.bartvangestel.songregistrybackend.DTO.SongDTO;
+import com.bartvangestel.songregistrybackend.dal.model.Album;
+import com.bartvangestel.songregistrybackend.dal.model.Song;
 import com.bartvangestel.songregistrybackend.logic.service.ArtistService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,22 +24,27 @@ public class ArtistController {
     }
 
     @GetMapping
-    public List<Artist> getArtists() {
+    public List<ArtistDTO> getArtists() {
         return artistService.getArtists();
     }
 
-    @GetMapping("/{name}")
-    public List<Artist> getArtistByName(@PathVariable String name) {
-        return artistService.getArtistByName(name);
+    @GetMapping("/home")
+    public List<ArtistDTO> getArtistsForHome() {
+        return artistService.getArtistsForHome();
     }
 
-    @GetMapping("/{name}/albums")
-    public List<Album> getAlbumsByArtistName(@PathVariable String name) {
+    @GetMapping("/{id}")
+    public ArtistDTO getArtistById(@PathVariable int id) {
+        return artistService.getArtistById(id);
+    }
+
+    @GetMapping("/{id}/albums")
+    public List<AlbumDTO> getAlbumsByArtistName(@PathVariable String name) {
         return artistService.getAlbumsByArtistName(name);
     }
 
-    @GetMapping("/{name}/songs")
-    public List<Song> getSongsByArtistName(@PathVariable String name) {
+    @GetMapping("/{id}/songs")
+    public List<SongDTO> getSongsByArtistName(@PathVariable String name) {
         return artistService.getSongsByArtistName(name);
     }
 

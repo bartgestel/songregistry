@@ -1,14 +1,14 @@
-// src/test/java/com/bartvangestel/songregistrybackend/service/SearchServiceImplTest.java
+// src/test/java/com/bartvangestel/songregistrybackend/service/SearchServiceTest.java
 package com.bartvangestel.songregistrybackend.service;
 
+import com.bartvangestel.songregistrybackend.DTO.AlbumDTO;
+import com.bartvangestel.songregistrybackend.DTO.ArtistDTO;
+import com.bartvangestel.songregistrybackend.DTO.SongDTO;
 import com.bartvangestel.songregistrybackend.logic.interfaces.IAlbumService;
 import com.bartvangestel.songregistrybackend.logic.interfaces.IArtistService;
 import com.bartvangestel.songregistrybackend.logic.interfaces.ISongService;
 import com.bartvangestel.songregistrybackend.logic.service.SearchService;
-import com.bartvangestel.songregistrybackend.model.Album;
-import com.bartvangestel.songregistrybackend.model.Artist;
-import com.bartvangestel.songregistrybackend.model.SearchResult;
-import com.bartvangestel.songregistrybackend.model.Song;
+import com.bartvangestel.songregistrybackend.DTO.SearchResultDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -44,8 +44,10 @@ class SearchServiceTest {
     void testSearchWithArtists() {
         // Arrange
         String search = "ArtistName";
-        Artist artist = new Artist(1, search); // Assuming the constructor matches your model
-        List<Artist> artists = new ArrayList<>();
+        ArtistDTO artist = new ArtistDTO();
+        artist.setId(1);
+        artist.setArtistName(search);
+        List<ArtistDTO> artists = new ArrayList<>();
         artists.add(artist);
 
         when(artistService.getArtistByName(search)).thenReturn(artists);
@@ -53,7 +55,7 @@ class SearchServiceTest {
         when(songService.getSongsBySongTitle(search)).thenReturn(new ArrayList<>());
 
         // Act
-        List<SearchResult> results = searchService.search(search);
+        List<SearchResultDTO> results = searchService.search(search);
 
         // Assert
         assertEquals(1, results.size());
@@ -66,8 +68,10 @@ class SearchServiceTest {
     void testSearchWithAlbums() {
         // Arrange
         String search = "AlbumName";
-        Album album = new Album(1, search); // Assuming the constructor matches your model
-        List<Album> albums = new ArrayList<>();
+        AlbumDTO album = new AlbumDTO();
+        album.setId(1);
+        album.setAlbumName(search);
+        List<AlbumDTO> albums = new ArrayList<>();
         albums.add(album);
 
         when(artistService.getArtistByName(search)).thenReturn(new ArrayList<>());
@@ -75,7 +79,7 @@ class SearchServiceTest {
         when(songService.getSongsBySongTitle(search)).thenReturn(new ArrayList<>());
 
         // Act
-        List<SearchResult> results = searchService.search(search);
+        List<SearchResultDTO> results = searchService.search(search);
 
         // Assert
         assertEquals(1, results.size());
@@ -88,8 +92,10 @@ class SearchServiceTest {
     void testSearchWithSongs() {
         // Arrange
         String search = "SongName";
-        Song song = new Song(1, search); // Assuming the constructor matches your model
-        List<Song> songs = new ArrayList<>();
+        SongDTO song = new SongDTO();
+        song.setId(1);
+        song.setTitle(search);
+        List<SongDTO> songs = new ArrayList<>();
         songs.add(song);
 
         when(artistService.getArtistByName(search)).thenReturn(new ArrayList<>());
@@ -97,7 +103,7 @@ class SearchServiceTest {
         when(songService.getSongsBySongTitle(search)).thenReturn(songs);
 
         // Act
-        List<SearchResult> results = searchService.search(search);
+        List<SearchResultDTO> results = searchService.search(search);
 
         // Assert
         assertEquals(1, results.size());
@@ -110,17 +116,23 @@ class SearchServiceTest {
     void testSearchWithMultipleResults() {
         // Arrange
         String search = "SearchTerm";
-        Artist artist = new Artist(1, "ArtistName");
-        Album album = new Album(2, "AlbumName");
-        Song song = new Song(3, "SongName");
+        ArtistDTO artist = new ArtistDTO();
+        artist.setId(1);
+        artist.setArtistName("ArtistName");
+        AlbumDTO album = new AlbumDTO();
+        album.setId(2);
+        album.setAlbumName("AlbumName");
+        SongDTO song = new SongDTO();
+        song.setId(3);
+        song.setTitle("SongName");
 
-        List<Artist> artists = new ArrayList<>();
+        List<ArtistDTO> artists = new ArrayList<>();
         artists.add(artist);
 
-        List<Album> albums = new ArrayList<>();
+        List<AlbumDTO> albums = new ArrayList<>();
         albums.add(album);
 
-        List<Song> songs = new ArrayList<>();
+        List<SongDTO> songs = new ArrayList<>();
         songs.add(song);
 
         when(artistService.getArtistByName(search)).thenReturn(artists);
@@ -128,7 +140,7 @@ class SearchServiceTest {
         when(songService.getSongsBySongTitle(search)).thenReturn(songs);
 
         // Act
-        List<SearchResult> results = searchService.search(search);
+        List<SearchResultDTO> results = searchService.search(search);
 
         // Assert
         assertEquals(3, results.size());

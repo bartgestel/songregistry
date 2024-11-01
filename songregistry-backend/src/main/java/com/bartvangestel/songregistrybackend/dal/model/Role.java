@@ -1,4 +1,4 @@
-package com.bartvangestel.songregistrybackend.model;
+package com.bartvangestel.songregistrybackend.dal.model;
 
 import jakarta.persistence.*;
 

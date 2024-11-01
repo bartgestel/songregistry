@@ -1,5 +1,5 @@
 // src/main/java/com/bartvangestel/songregistrybackend/model/Song.java
-package com.bartvangestel.songregistrybackend.model;
+package com.bartvangestel.songregistrybackend.dal.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -52,11 +52,11 @@ public class Song {
         this.id = id;
     }
 
-    public String getSongName() {
+    public String getTitle() {
         return songName;
     }
 
-    public void setSongName(String songName) {
+    public void setTitle(String songName) {
         this.songName = songName;
     }
 

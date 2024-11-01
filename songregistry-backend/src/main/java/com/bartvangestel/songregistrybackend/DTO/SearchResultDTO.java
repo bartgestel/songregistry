@@ -1,13 +1,11 @@
-package com.bartvangestel.songregistrybackend.model;
+package com.bartvangestel.songregistrybackend.DTO;
 
-import java.util.List;
-
-public class SearchResult {
+public class SearchResultDTO {
     private String type;
     private int id;
     private String name;
 
-    public SearchResult(String type, int id, String name) {
+    public SearchResultDTO(String type, int id, String name) {
         this.type = type;
         this.id = id;
         this.name = name;
