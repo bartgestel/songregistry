@@ -41,7 +41,10 @@ function HomeArtists() {
           <div className="flex mt-5 justify-between">
             {artists.map((artist) => (
               <div key={artist.id}>
-                <Card onClick={() => handleClick(artist.id)}>
+                <Card
+                  onClick={() => handleClick(artist.id)}
+                  className="cursor-pointer"
+                >
                   <CardHeader>
                     <img
                       alt={artist.artistName}
