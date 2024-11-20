@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card.tsx";
+import { useNavigate } from "react-router-dom";
 
 interface Artist {
   id: number;
@@ -35,9 +36,14 @@ function ArtistPage() {
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);
   };
+  const navigate = useNavigate();
 
   const truncatedText =
     bioText.length > maxLength ? bioText.slice(0, maxLength) + "..." : bioText;
+
+  const handleSongClick = (id: number) => {
+    navigate(`/song/${id}`);
+  };
 
   useEffect(() => {
     const fetchArtist = async () => {
@@ -117,7 +123,10 @@ function ArtistPage() {
                 <div className="flex mt-5 justify-between">
                   {artist?.artistSongs.map((song) => (
                     <div>
-                      <Card>
+                      <Card
+                        onClick={() => handleSongClick(song.id)}
+                        className="cursor-pointer"
+                      >
                         <CardHeader>
                           <img
                             alt={song.title}

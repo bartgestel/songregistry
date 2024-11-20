@@ -4,8 +4,6 @@ package com.bartvangestel.songregistrybackend.presentation.controller;
 import com.bartvangestel.songregistrybackend.DTO.AlbumDTO;
 import com.bartvangestel.songregistrybackend.DTO.ArtistDTO;
 import com.bartvangestel.songregistrybackend.DTO.SongDTO;
-import com.bartvangestel.songregistrybackend.dal.model.Album;
-import com.bartvangestel.songregistrybackend.dal.model.Song;
 import com.bartvangestel.songregistrybackend.logic.service.ArtistService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

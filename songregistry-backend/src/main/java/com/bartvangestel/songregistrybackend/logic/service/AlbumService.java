@@ -22,47 +22,21 @@ public class AlbumService implements IAlbumService {
     }
 
     public List<AlbumDTO> getAlbums() {
-        List<Album> albums = albumDAL.getAlbums();
-        return albums.stream().map(this::convertToDTO).collect(Collectors.toList());
+        return albumDAL.getAlbums();
     }
 
     @Override
     public List<AlbumDTO> getAlbumsByArtistName(String name) {
-        List<Album> albums = albumDAL.getAlbumsByArtistName(name);
-        return albums.stream().map(this::convertToDTO).collect(Collectors.toList());
+        return albumDAL.getAlbumsByArtistName(name);
     }
 
     @Override
     public List<AlbumDTO> getAlbumsByAlbumTitle(String title) {
-        List<Album> albums = albumDAL.getAlbumsByAlbumTitle(title);
-        return albums.stream().map(this::convertToDTO).collect(Collectors.toList());
+        return albumDAL.getAlbumsByAlbumTitle(title);
     }
 
     @Override
     public List<AlbumDTO> getAlbumsForHome() {
-        List<Album> albums = albumDAL.getAlbumsForHome();
-        return albums.stream().map(this::convertToDTOWithRelations).collect(Collectors.toList());
-    }
-
-    private AlbumDTO convertToDTO(Album album) {
-        AlbumDTO albumDTO = new AlbumDTO();
-        albumDTO.setId(album.getId());
-        albumDTO.setAlbumName(album.getAlbumName());
-        return albumDTO;
-    }
-
-    private AlbumDTO convertToDTOWithRelations(Album album) {
-        AlbumDTO albumDTO = convertToDTO(album);
-        albumDTO.setAlbumArtists(album.getAlbumArtists().stream()
-                .map(albumArtist -> convertToDTO(albumArtist.getArtist()))
-                .collect(Collectors.toList()));
-        return albumDTO;
-    }
-
-    private ArtistDTO convertToDTO(Artist artist) {
-        ArtistDTO artistDTO = new ArtistDTO();
-        artistDTO.setId(artist.getId());
-        artistDTO.setArtistName(artist.getArtistName());
-        return artistDTO;
+        return albumDAL.getAlbumsForHome();
     }
 }

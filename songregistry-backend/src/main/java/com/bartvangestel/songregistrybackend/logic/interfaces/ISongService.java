@@ -8,4 +8,5 @@ import java.util.List;
 public interface ISongService {
     List<SongDTO> getSongsByArtistName(String name);
     List<SongDTO> getSongsBySongTitle(String title);
+    SongDTO getSongById(int id);
 }
