@@ -18,9 +18,11 @@ interface ReviewSheetProps {
 }
 
 function ReviewSheet({ reviews }: ReviewSheetProps) {
+  const reviewCount = reviews.length;
+
   return (
     <Sheet>
-      <SheetTrigger>Open</SheetTrigger>
+      <SheetTrigger>{reviewCount}</SheetTrigger>
       <SheetContent className="bg-slate-300 border-0">
         <SheetHeader>
           <SheetTitle>Reviews</SheetTitle>
