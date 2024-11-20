@@ -2,6 +2,7 @@ import ReactStars from "react-rating-stars-component";
 
 function ReviewStars(rating) {
   const reviewRating = rating.rating;
+  const starConfig = {};
 
   return (
     <ReactStars

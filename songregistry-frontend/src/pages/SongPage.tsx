@@ -70,8 +70,10 @@ function SongPage() {
               <p className="">
                 {song?.artists.map((artist) => artist.artistName).join(", ")}
               </p>
-              <ReviewStars rating={averageRating} />
-              <ReviewSheet reviews={reviews} />
+              <div className="flex items-center">
+                <ReviewStars rating={averageRating} />
+                <ReviewSheet reviews={reviews} />
+              </div>
             </div>
           </div>
         </div>

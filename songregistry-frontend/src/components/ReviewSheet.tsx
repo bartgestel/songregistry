@@ -6,6 +6,7 @@ import {
   SheetHeader,
 } from "@/components/ui/sheet.tsx";
 import ReviewStars from "@/components/ReviewStars";
+import ReviewField from "@/components/ReviewField";
 
 interface Review {
   id: number;
@@ -22,12 +23,15 @@ function ReviewSheet({ reviews }: ReviewSheetProps) {
 
   return (
     <Sheet>
-      <SheetTrigger>{reviewCount}</SheetTrigger>
+      <SheetTrigger className="text-blue-500 underline ml-2">
+        {reviewCount}
+      </SheetTrigger>
       <SheetContent className="bg-slate-300 border-0">
         <SheetHeader>
           <SheetTitle>Reviews</SheetTitle>
         </SheetHeader>
-        <div className="p-4">
+        <ReviewField />
+        <div className="mt-4">
           {reviews.map((review) => (
             <div key={review.id} className="p-2 mb-6 bg-white">
               <p>{review.review}</p>
