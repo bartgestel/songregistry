@@ -31,10 +31,16 @@ function SongPage() {
   const [loading, setLoading] = useState<boolean>(true);
   const reviews = song?.reviews;
 
+  const roundToHalf = (num: number) => {
+    return Math.round(num * 2) / 2;
+  };
+
   const averageRating =
     song?.reviews && song.reviews.length > 0
-      ? song.reviews.reduce((acc, review) => acc + review.rating, 0) /
-        song.reviews.length
+      ? roundToHalf(
+          song.reviews.reduce((acc, review) => acc + review.rating, 0) /
+            song.reviews.length,
+        )
       : 0;
 
   useEffect(() => {

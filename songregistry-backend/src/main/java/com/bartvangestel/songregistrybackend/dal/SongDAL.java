@@ -10,6 +10,7 @@ import com.bartvangestel.songregistrybackend.dal.repository.ReviewRepository;
 import com.bartvangestel.songregistrybackend.dal.repository.SongRepository;
 import com.bartvangestel.songregistrybackend.logic.interfaces.ISongDAL;
 import com.bartvangestel.songregistrybackend.dal.model.Song;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -57,7 +58,7 @@ public class SongDAL implements ISongDAL {
 
     public SongDTO convertToDTOWithArtistsAndReviews(Song song) {
         List<Artist> artists = artistRepository.findBySongArtists_Song_Id(song.getId());
-        List<Review> reviews = reviewRepository.findReviewBySongId(song.getId());
+        List<Review> reviews = reviewRepository.findReviewBySongId(song.getId(), Sort.by(Sort.Direction.DESC, "id"));
         List<ReviewDTO> reviewDTOS = new ArrayList<>();
         for(Review review : reviews) {
             ReviewDTO reviewDTO = new ReviewDTO();

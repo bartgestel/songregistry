@@ -1,17 +1,18 @@
 import ReactStars from "react-rating-stars-component";
+import { Rating } from "react-simple-star-rating";
 
-function ReviewStars(rating) {
-  const reviewRating = rating.rating;
-  const starConfig = {};
-
+interface ReviewStarsProps {
+  rating: number;
+}
+// https://mui.com/material-ui/react-rating/ hiermee maken komende keer
+function ReviewStars({ rating }: ReviewStarsProps) {
   return (
-    <ReactStars
-      count={5}
-      value={reviewRating}
-      size={36}
-      isHalf={true}
-      activeColor="#ffd700"
-      edit={false}
+    <Rating
+      initialValue={rating}
+      readonly={true}
+      size={50}
+      transition
+      allowFraction
     />
   );
 }
