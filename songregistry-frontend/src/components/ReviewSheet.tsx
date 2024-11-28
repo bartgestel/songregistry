@@ -49,7 +49,7 @@ function ReviewSheet({ reviews }: ReviewSheetProps) {
       <SheetTrigger className="text-blue-500 underline ml-2">
         {reviewCount}
       </SheetTrigger>
-      <SheetContent className="bg-slate-300 border-0">
+      <SheetContent className="bg-slate-200 border-0">
         <SheetHeader>
           <SheetTitle>Reviews</SheetTitle>
         </SheetHeader>

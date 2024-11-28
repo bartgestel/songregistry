@@ -1,19 +1,13 @@
-import ReactStars from "react-rating-stars-component";
-import { Rating } from "react-simple-star-rating";
+import { Rating } from "@mui/material";
 
 interface ReviewStarsProps {
   rating: number;
 }
-// https://mui.com/material-ui/react-rating/ hiermee maken komende keer
+
 function ReviewStars({ rating }: ReviewStarsProps) {
+  console.log(rating);
   return (
-    <Rating
-      initialValue={rating}
-      readonly={true}
-      size={50}
-      transition
-      allowFraction
-    />
+    <Rating value={rating} precision={0.5} readOnly={true} size={"large"} />
   );
 }
 
