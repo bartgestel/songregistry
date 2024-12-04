@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
+import ReviewStars from "@/components/ReviewStars.tsx";
 
 interface Album {
   id: number;
@@ -63,8 +64,20 @@ function AlbumPage() {
                 className="w-60 h-60"
                 src="https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
               />
-              <div className="block text-left ml-5">
-                <p className="text-4xl ">{album?.albumName}</p>
+              <div className="flex flex-col">
+                <div className="block text-left ml-5">
+                  <p className="text-4xl ">{album?.albumName}</p>
+                </div>
+                <div className="block text-left ml-5">
+                  <p>
+                    {album?.albumArtists
+                      .map((artist) => artist.artistName)
+                      .join(", ")}
+                  </p>
+                </div>
+                <div className="block text-left ml-5">
+                  <ReviewStars rating={album?.averageRating ?? 0} />
+                </div>
               </div>
             </div>
             <div className="w-4/5 flex flex-col mt-8">
