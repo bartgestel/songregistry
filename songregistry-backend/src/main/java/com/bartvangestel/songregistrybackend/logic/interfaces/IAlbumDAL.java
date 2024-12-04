@@ -11,4 +11,5 @@ public interface IAlbumDAL {
     List<AlbumDTO> getAlbumsByAlbumTitle(String albumTitle);
     List<AlbumDTO> getAlbumsForHome();
     List<AlbumDTO> getAlbumsForArtist(int artistId);
+    AlbumDTO getAlbumById(int id);
 }

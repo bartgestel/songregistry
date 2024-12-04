@@ -6,6 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card.tsx";
+import { useNavigate } from "react-router-dom";
 
 interface Artist {
   id: number;
@@ -21,6 +22,11 @@ interface Album {
 function HomeArtists() {
   const [albums, setAlbums] = useState<Album[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const navigate = useNavigate();
+
+  const handleClick = (id: number) => {
+    navigate(`/album/${id}`);
+  };
 
   useEffect(() => {
     const fetchAlbums = async () => {
@@ -45,7 +51,10 @@ function HomeArtists() {
           <div className="flex mt-5 justify-between">
             {albums.map((album) => (
               <div>
-                <Card>
+                <Card
+                  onClick={() => handleClick(album.id)}
+                  className="cursor-pointer"
+                >
                   <CardHeader>
                     <img
                       alt={album.albumName}

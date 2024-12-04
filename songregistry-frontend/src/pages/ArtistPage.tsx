@@ -45,6 +45,10 @@ function ArtistPage() {
     navigate(`/song/${id}`);
   };
 
+  const handleAlbumClick = (id: number) => {
+    navigate(`/album/${id}`);
+  };
+
   useEffect(() => {
     const fetchArtist = async () => {
       try {
@@ -98,7 +102,10 @@ function ArtistPage() {
                 <div className="flex mt-5 justify-between">
                   {artist?.artistAlbums.map((album) => (
                     <div>
-                      <Card>
+                      <Card
+                        onClick={() => handleAlbumClick(album.id)}
+                        className="cursor-pointer"
+                      >
                         <CardHeader>
                           <img
                             alt={album.albumName}
