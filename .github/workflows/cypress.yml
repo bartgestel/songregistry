@@ -26,7 +26,7 @@ jobs:
 
       # Step 4: Install dependencies
       - name: Install dependencies
-        run: cd /home/runner/work/songregistry && pnpm install
+        run: cd /home/runner/work && pnpm install
 
       # Step 5: Run Cypress tests
       - name: Run Cypress tests
