@@ -19,9 +19,6 @@ jobs:
       # Step 2: Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: 'pnpm' # Caches pnpm dependencies
 
       # Step 3: Install pnpm
       - name: Install pnpm
