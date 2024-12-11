@@ -1,18 +1,13 @@
 package com.bartvangestel.songregistrybackend.presentation.controller;
 
-
-import com.bartvangestel.songregistrybackend.DTO.AlbumDTO;
 import com.bartvangestel.songregistrybackend.DTO.ArtistDTO;
-import com.bartvangestel.songregistrybackend.DTO.SongDTO;
 import com.bartvangestel.songregistrybackend.logic.service.ArtistService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -56,6 +51,17 @@ public class ArtistController {
         }else{
             return ResponseEntity.ok(artist);
         }
+    }
+
+    @Operation(summary = "Add artist to database")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Artist added"),
+            @ApiResponse(responseCode = "400", description = "Invalid input"),
+    })
+    @PostMapping()
+    public ResponseEntity<Void> addArtist(@RequestBody ArtistDTO artistDTO) {
+        artistService.addArtist(artistDTO);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
 }

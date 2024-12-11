@@ -18,8 +18,8 @@ public class Song {
     @Column(name = "song_name", nullable = false)
     private String songName;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "song_genre", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "song_genre")
     @JsonIgnore
     private Genre songGenre;
 

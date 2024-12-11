@@ -49,4 +49,8 @@ public class ArtistService implements IArtistService {
         return songService.getSongsByArtistName(name);
     }
 
+    public void addArtist(ArtistDTO artist) {
+        artistDAL.addArtist(artist);
+    }
+
 }

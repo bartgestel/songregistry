@@ -57,4 +57,12 @@ public class SearchService implements ISearchService {
         return searchResultDTOS;
     }
 
+    public List<ArtistDTO> searchArtist(String search) {
+        return artistService.getArtistByName(search);
+    }
+
+    public List<AlbumDTO> searchAlbum(String search) {
+        return albumService.getAlbumsByAlbumTitle(search);
+    }
+
 }

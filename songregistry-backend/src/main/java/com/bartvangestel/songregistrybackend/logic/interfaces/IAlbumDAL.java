@@ -12,4 +12,5 @@ public interface IAlbumDAL {
     List<AlbumDTO> getAlbumsForHome();
     List<AlbumDTO> getAlbumsForArtist(int artistId);
     AlbumDTO getAlbumById(int id);
+    void addAlbum(AlbumDTO albumDTO);
 }

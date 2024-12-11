@@ -58,40 +58,43 @@ function AlbumPage() {
           <p>Loading...</p>
         ) : (
           <div className="w-full flex flex-col justify-center items-center mt-8">
-            <div className="w-4/5 flex">
+            <div className="w-4/5 flex" id="albumInfo">
               <img
                 alt={album?.albumName}
                 className="w-60 h-60"
+                id="albumImage"
                 src="https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
               />
               <div className="flex flex-col">
                 <div className="block text-left ml-5">
-                  <p className="text-4xl ">{album?.albumName}</p>
+                  <p className="text-4xl " id="albumName">
+                    {album?.albumName}
+                  </p>
                 </div>
                 <div className="block text-left ml-5">
-                  <p>
+                  <p id="albumArtists">
                     {album?.albumArtists
                       .map((artist) => artist.artistName)
                       .join(", ")}
                   </p>
                 </div>
-                <div className="block text-left ml-5">
+                <div className="block text-left ml-5" id="albumRating">
                   <ReviewStars rating={album?.averageRating ?? 0} />
                 </div>
               </div>
             </div>
-            <div className="w-4/5 flex flex-col mt-8">
+            <div className="w-4/5 flex flex-col mt-8" id="songs">
               <p className="text-4xl text-left">Songs</p>
               <div className="flex">
                 {loading ? (
                   <p>Loading...</p>
                 ) : (
-                  <div className="flex mt-5 justify-between">
+                  <div className="flex mt-5 justify-between" id="albumSongs">
                     {album?.albumSongs.map((song) => (
                       <div>
                         <Card
                           onClick={() => handleSongClick(song.id)}
-                          className="cursor-pointer"
+                          className="cursor-pointer albumSongCard"
                         >
                           <CardHeader>
                             <img

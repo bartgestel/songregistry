@@ -10,4 +10,5 @@ public interface ISongDAL {
     List<SongDTO> getSongsByArtistName(String name);
     List<SongDTO> getSongsBySongTitle(String title);
     SongDTO getSongById(int id);
+    void addSong(SongDTO songDTO);
 }

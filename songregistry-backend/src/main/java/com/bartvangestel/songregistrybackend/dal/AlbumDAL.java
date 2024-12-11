@@ -3,14 +3,15 @@ package com.bartvangestel.songregistrybackend.dal;
 import com.bartvangestel.songregistrybackend.DTO.AlbumDTO;
 import com.bartvangestel.songregistrybackend.DTO.ArtistDTO;
 import com.bartvangestel.songregistrybackend.DTO.SongDTO;
+import com.bartvangestel.songregistrybackend.dal.model.AlbumArtist;
 import com.bartvangestel.songregistrybackend.dal.model.Artist;
 import com.bartvangestel.songregistrybackend.dal.model.Song;
+import com.bartvangestel.songregistrybackend.dal.repository.AlbumArtistRepository;
 import com.bartvangestel.songregistrybackend.dal.repository.AlbumRepository;
 import com.bartvangestel.songregistrybackend.dal.repository.ArtistRepository;
 import com.bartvangestel.songregistrybackend.dal.repository.SongRepository;
 import com.bartvangestel.songregistrybackend.logic.interfaces.IAlbumDAL;
 import com.bartvangestel.songregistrybackend.dal.model.Album;
-import com.bartvangestel.songregistrybackend.logic.interfaces.IArtistDAL;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -21,11 +22,13 @@ public class AlbumDAL implements IAlbumDAL {
     private final AlbumRepository albumRepository;
     private final ArtistRepository artistRepository;
     private final SongRepository songRepository;
+    private final AlbumArtistRepository albumArtistRepository;
 
-    public AlbumDAL(AlbumRepository albumRepository, ArtistRepository artistRepository, SongRepository songRepository) {
+    public AlbumDAL(AlbumRepository albumRepository, ArtistRepository artistRepository, SongRepository songRepository, AlbumArtistRepository albumArtistRepository) {
         this.albumRepository = albumRepository;
         this.artistRepository = artistRepository;
         this.songRepository = songRepository;
+        this.albumArtistRepository = albumArtistRepository;
     }
 
     public List<AlbumDTO> getAlbums() {
@@ -56,6 +59,21 @@ public class AlbumDAL implements IAlbumDAL {
     public AlbumDTO getAlbumById(int id) {
         Album album = albumRepository.findById(id);
         return convertToDTOWithArtistsAndSongs(album);
+    }
+
+    public void addAlbum(AlbumDTO albumDTO) {
+        Album album = new Album();
+        album.setAlbumName(albumDTO.getAlbumName());
+        albumRepository.save(album);
+        for(ArtistDTO artistDTO : albumDTO.getAlbumArtists()) {
+            Artist artist = new Artist();
+            AlbumArtist albumArtist = new AlbumArtist();
+            artist.setArtistName(artistDTO.getArtistName());
+            artist.setId(artistDTO.getId());
+            albumArtist.setAlbum(album);
+            albumArtist.setArtist(artist);
+            albumArtistRepository.save(albumArtist);
+        }
     }
 
     public AlbumDTO convertToDTO(Album album) {

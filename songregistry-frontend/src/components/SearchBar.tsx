@@ -44,21 +44,23 @@ function SearchBar() {
   };
 
   return (
-    <div>
+    <div id="searchBar">
       <input
         className="searchbar"
+        id="searchBarInput"
         value={query}
         onInput={handleSearch}
         placeholder="Search"
       />
       <div
         className={`searchresult ${searchResult.length > 0 ? "visible" : ""}`}
+        id="searchResults"
       >
         {searchResult.map((result) => (
           <div
-            className="searchitem"
             key={result.name}
             onClick={() => handleSearchResultClick(result.id, result.type)}
+            className="searchResult"
           >
             <p>{result.name}</p>
           </div>

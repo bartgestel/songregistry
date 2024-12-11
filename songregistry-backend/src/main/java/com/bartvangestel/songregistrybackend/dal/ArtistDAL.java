@@ -59,6 +59,12 @@ public class ArtistDAL implements IArtistDAL {
         return artists.stream().map(this::convertToDTO).collect(java.util.stream.Collectors.toList());
     }
 
+    public void addArtist(ArtistDTO artistDTO) {
+        Artist artist = new Artist();
+        artist.setArtistName(artistDTO.getArtistName());
+        artistRepository.save(artist);
+    }
+
     public ArtistDTO convertToDTO(Artist artist) {
         ArtistDTO artistDTO = new ArtistDTO();
         artistDTO.setId(artist.getId());

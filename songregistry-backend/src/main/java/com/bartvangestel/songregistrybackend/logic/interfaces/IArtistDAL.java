@@ -13,4 +13,5 @@ public interface IArtistDAL {
     List<ArtistDTO> getArtistsBySongId(Integer id);
 
     List<ArtistDTO> getArtistsByAlbumId(Integer id);
+    void addArtist(ArtistDTO artist);
 }

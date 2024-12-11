@@ -72,15 +72,18 @@ function ArtistPage() {
         <p>Loading...</p>
       ) : (
         <div className="w-full flex flex-col justify-center items-center mt-8">
-          <div className="w-4/5 flex">
+          <div className="w-4/5 flex" id="artistInfo">
             <img
               alt={artist?.artistName}
+              id="artistImage"
               className="w-60 h-60"
               src="https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
             />
             <div className="block text-left ml-5">
-              <p className="text-4xl ">{artist?.artistName}</p>
-              <p className="">
+              <p className="text-4xl" id="artistName">
+                {artist?.artistName}
+              </p>
+              <p className="" id="artistBio">
                 {isExpanded ? bioText : truncatedText}
                 {bioText.length > maxLength && (
                   <button
@@ -93,7 +96,7 @@ function ArtistPage() {
               </p>
             </div>
           </div>
-          <div className="w-4/5 flex flex-col mt-8">
+          <div className="w-4/5 flex flex-col mt-8" id="artistAlbums">
             <p className="text-4xl text-left">Albums</p>
             <div className="flex">
               {loading ? (
@@ -101,10 +104,10 @@ function ArtistPage() {
               ) : (
                 <div className="flex mt-5 justify-between">
                   {artist?.artistAlbums.map((album) => (
-                    <div>
+                    <div id="artistAlbums">
                       <Card
                         onClick={() => handleAlbumClick(album.id)}
-                        className="cursor-pointer"
+                        className="cursor-pointer artistAlbumCard"
                       >
                         <CardHeader>
                           <img
@@ -121,18 +124,18 @@ function ArtistPage() {
               )}
             </div>
           </div>
-          <div className="w-4/5 flex flex-col mt-8">
+          <div className="w-4/5 flex flex-col mt-8" id="artistSongs">
             <p className="text-4xl text-left">Songs</p>
             <div className="flex">
               {loading ? (
                 <p>Loading...</p>
               ) : (
-                <div className="flex mt-5 justify-between">
+                <div className="flex mt-5 justify-between" id="artistSongs">
                   {artist?.artistSongs.map((song) => (
                     <div>
                       <Card
                         onClick={() => handleSongClick(song.id)}
-                        className="cursor-pointer"
+                        className="cursor-pointer artistSongCard"
                       >
                         <CardHeader>
                           <img

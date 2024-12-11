@@ -3,8 +3,6 @@ package com.bartvangestel.songregistrybackend.logic.service;
 import com.bartvangestel.songregistrybackend.DTO.AlbumDTO;
 import com.bartvangestel.songregistrybackend.DTO.ReviewDTO;
 import com.bartvangestel.songregistrybackend.DTO.SongDTO;
-import com.bartvangestel.songregistrybackend.dal.ReviewDAL;
-import com.bartvangestel.songregistrybackend.dal.repository.ReviewRepository;
 import com.bartvangestel.songregistrybackend.logic.interfaces.IAlbumDAL;
 import com.bartvangestel.songregistrybackend.logic.interfaces.IAlbumService;
 import com.bartvangestel.songregistrybackend.logic.interfaces.IReviewDAL;
@@ -51,11 +49,17 @@ public class AlbumService implements IAlbumService {
         OptionalDouble averageRating = songs.stream()
                 .mapToDouble(song -> {
                     List<ReviewDTO> reviews = reviewDAL.getReviewsForSong(song.getId());
-                    return reviews.stream().mapToDouble(ReviewDTO::getRating).average().orElse(0.0);
+                    return reviews != null && !reviews.isEmpty()
+                            ? reviews.stream().mapToDouble(ReviewDTO::getRating).average().orElse(0.0)
+                            : 0.0;
                 })
                 .average();
 
         album.setAverageRating(averageRating.orElse(0.0));
         return album;
+    }
+
+    public void addAlbum(AlbumDTO albumDTO) {
+        albumDAL.addAlbum(albumDTO);
     }
 }

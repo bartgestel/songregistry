@@ -42,8 +42,8 @@ function HomeArtists() {
     fetchAlbums();
   }, []);
   return (
-    <div className="text-left p-6">
-      <p className="text-4xl">What to listen</p>
+    <div className="text-left p-6" id="homeAlbums">
+      <p className="text-4xl">Albums</p>
       <div>
         {loading ? (
           <p>Loading...</p>
@@ -53,7 +53,7 @@ function HomeArtists() {
               <div>
                 <Card
                   onClick={() => handleClick(album.id)}
-                  className="cursor-pointer"
+                  className="cursor-pointer albumCard"
                 >
                   <CardHeader>
                     <img

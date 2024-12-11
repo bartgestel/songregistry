@@ -33,4 +33,8 @@ public class SongService implements ISongService {
         return songDAL.getSongById(id);
     }
 
+    public void addSong(SongDTO songDTO) {
+        songDAL.addSong(songDTO);
+    }
+
 }
