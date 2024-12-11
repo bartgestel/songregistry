@@ -33,6 +33,16 @@ INSERT INTO `albums` (`id`, `album_name`) VALUES
 (5, 'Watch The Throne'),
 (6, 'Now, Not Yet');
 
+INSERT INTO `artists` (`id`, `artist_name`) VALUES
+                                                (1, 'Tyler The Creator'),
+                                                (2, 'Kanye West'),
+                                                (3, 'Jay-Z'),
+                                                (4, 'Half Alive'),
+                                                (5, 'Frank Ocean'),
+                                                (6, 'Mac Miller'),
+                                                (7, 'Sor'),
+                                                (8, 'Declan McKenna');
+
 --
 -- Gegevens worden geëxporteerd voor tabel `album_artists`
 --
@@ -50,15 +60,7 @@ INSERT INTO `album_artists` (`id`, `album_id`, `artist_id`) VALUES
 -- Gegevens worden geëxporteerd voor tabel `artists`
 --
 
-INSERT INTO `artists` (`id`, `artist_name`) VALUES
-(1, 'Tyler The Creator'),
-(2, 'Kanye West'),
-(3, 'Jay-Z'),
-(4, 'Half Alive'),
-(5, 'Frank Ocean'),
-(6, 'Mac Miller'),
-(7, 'Sor'),
-(8, 'Declan McKenna');
+
 
 --
 -- Gegevens worden geëxporteerd voor tabel `genres`
