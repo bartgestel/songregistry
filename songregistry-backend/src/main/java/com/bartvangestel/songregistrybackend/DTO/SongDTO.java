@@ -5,15 +5,18 @@ import java.util.List;
 public class SongDTO {
     private int id;
     private String title;
+    private int albumId;
     private List<ArtistDTO> artists;
+    private List<ReviewDTO> reviews;
 
     public SongDTO() {
     }
 
-    public SongDTO(int id, String title, List<ArtistDTO> artists) {
+    public SongDTO(int id, String title, List<ArtistDTO> artists, List<ReviewDTO> reviews) {
         this.id = id;
         this.title = title;
         this.artists = artists;
+        this.reviews = reviews;
     }
 
     public int getId() {
@@ -32,11 +35,27 @@ public class SongDTO {
         this.title = title;
     }
 
+    public int getAlbumId() {
+        return albumId;
+    }
+
+    public void setAlbumId(int albumId) {
+        this.albumId = albumId;
+    }
+
     public List<ArtistDTO> getArtists() {
         return artists;
     }
 
     public void setArtists(List<ArtistDTO> artists) {
         this.artists = artists;
+    }
+
+    public List<ReviewDTO> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<ReviewDTO> reviews) {
+        this.reviews = reviews;
     }
 }

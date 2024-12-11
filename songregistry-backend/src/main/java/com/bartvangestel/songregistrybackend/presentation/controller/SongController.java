@@ -3,9 +3,7 @@ package com.bartvangestel.songregistrybackend.presentation.controller;
 import com.bartvangestel.songregistrybackend.DTO.SongDTO;
 import com.bartvangestel.songregistrybackend.logic.service.SongService;
 import com.bartvangestel.songregistrybackend.dal.model.Song;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,5 +19,16 @@ public class SongController {
     @GetMapping()
     public List<SongDTO> getSongs() {
         return songService.getSongs();
+    }
+
+    @PostMapping
+    public void addSong(@RequestBody SongDTO songDTO) {
+        System.out.println(songDTO.getAlbumId());
+        songService.addSong(songDTO);
+    }
+
+    @GetMapping("/{id}")
+    public SongDTO getSongById(@PathVariable int id) {
+        return songService.getSongById(id);
     }
 }

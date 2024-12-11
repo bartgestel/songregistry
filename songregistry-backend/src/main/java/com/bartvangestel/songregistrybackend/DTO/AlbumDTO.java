@@ -1,11 +1,16 @@
 package com.bartvangestel.songregistrybackend.DTO;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.util.List;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class AlbumDTO {
     private Integer id;
     private String albumName;
     private List<ArtistDTO> albumArtists;
+    private List<SongDTO> albumSongs;
+    private double averageRating;
 
     public AlbumDTO() {
     }
@@ -38,5 +43,21 @@ public class AlbumDTO {
 
     public void setAlbumArtists(List<ArtistDTO> albumArtists) {
         this.albumArtists = albumArtists;
+    }
+
+    public List<SongDTO> getAlbumSongs() {
+        return albumSongs;
+    }
+
+    public void setAlbumSongs(List<SongDTO> albumSongs) {
+        this.albumSongs = albumSongs;
+    }
+
+    public double getAverageRating() {
+        return averageRating;
+    }
+
+    public void setAverageRating(double averageRating) {
+        this.averageRating = averageRating;
     }
 }

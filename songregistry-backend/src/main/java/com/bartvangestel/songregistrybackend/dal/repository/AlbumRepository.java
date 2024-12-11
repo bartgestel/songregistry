@@ -9,7 +9,8 @@ import java.util.List;
 @Repository
 public interface AlbumRepository extends JpaRepository<Album, Integer> {
     List<Album> findByAlbumNameContainingIgnoreCase(String albumTitle);
-    List<Album> findById(int albumId);
+    Album findById(int albumId);
     List<Album> findByAlbumArtists_Artist_ArtistNameContainingIgnoreCase(String artistName);
     List<Album> findTop6ByOrderByIdAsc();
+    List<Album> findByAlbumArtists_Artist_Id(int artistId);
 }

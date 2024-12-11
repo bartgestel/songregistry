@@ -32,7 +32,7 @@ function HomeArtists() {
   }, []);
 
   return (
-    <div className="text-left p-6">
+    <div className="text-left p-6" id="homeArtists">
       <p className="text-4xl">Artists</p>
       <div>
         {loading ? (
@@ -43,7 +43,7 @@ function HomeArtists() {
               <div key={artist.id}>
                 <Card
                   onClick={() => handleClick(artist.id)}
-                  className="cursor-pointer"
+                  className="cursor-pointer artistCard"
                 >
                   <CardHeader>
                     <img

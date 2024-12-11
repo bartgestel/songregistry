@@ -1,5 +1,7 @@
 package com.bartvangestel.songregistrybackend.presentation.controller;
 
+import com.bartvangestel.songregistrybackend.DTO.AlbumDTO;
+import com.bartvangestel.songregistrybackend.DTO.ArtistDTO;
 import com.bartvangestel.songregistrybackend.DTO.SearchResultDTO;
 import com.bartvangestel.songregistrybackend.logic.service.SearchService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,5 +23,15 @@ public class SearchController {
     @GetMapping("/{search}")
     public List<SearchResultDTO> search(@PathVariable String search) {
         return searchService.search(search);
+    }
+
+    @GetMapping("/{search}/artist")
+    public List<ArtistDTO> searchArtist(@PathVariable String search) {
+        return searchService.searchArtist(search);
+    }
+
+    @GetMapping("/{search}/album")
+    public List<AlbumDTO> searchAlbum(@PathVariable String search) {
+        return searchService.searchAlbum(search);
     }
 }

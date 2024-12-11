@@ -18,8 +18,8 @@ public class SongArtist {
     @JoinColumn(name = "artist_id", nullable = false)
     private Artist artist;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "artist_role", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "artist_role")
     private Role artistRole;
 
     public Integer getId() {

@@ -1,68 +1,65 @@
 package com.bartvangestel.songregistrybackend.logic.service;
 
 import com.bartvangestel.songregistrybackend.DTO.AlbumDTO;
-import com.bartvangestel.songregistrybackend.DTO.ArtistDTO;
+import com.bartvangestel.songregistrybackend.DTO.ReviewDTO;
+import com.bartvangestel.songregistrybackend.DTO.SongDTO;
 import com.bartvangestel.songregistrybackend.logic.interfaces.IAlbumDAL;
-import com.bartvangestel.songregistrybackend.dal.model.Album;
 import com.bartvangestel.songregistrybackend.logic.interfaces.IAlbumService;
-import com.bartvangestel.songregistrybackend.dal.model.Artist;
+import com.bartvangestel.songregistrybackend.logic.interfaces.IReviewDAL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.OptionalDouble;
 
 @Service
 public class AlbumService implements IAlbumService {
     private final IAlbumDAL albumDAL;
+    private final IReviewDAL reviewDAL;
 
     @Autowired
-    public AlbumService(IAlbumDAL albumDAL) {
+    public AlbumService(IAlbumDAL albumDAL, IReviewDAL reviewDAL) {
         this.albumDAL = albumDAL;
+        this.reviewDAL = reviewDAL;
     }
 
     public List<AlbumDTO> getAlbums() {
-        List<Album> albums = albumDAL.getAlbums();
-        return albums.stream().map(this::convertToDTO).collect(Collectors.toList());
+        return albumDAL.getAlbums();
     }
 
     @Override
     public List<AlbumDTO> getAlbumsByArtistName(String name) {
-        List<Album> albums = albumDAL.getAlbumsByArtistName(name);
-        return albums.stream().map(this::convertToDTO).collect(Collectors.toList());
+        return albumDAL.getAlbumsByArtistName(name);
     }
 
     @Override
     public List<AlbumDTO> getAlbumsByAlbumTitle(String title) {
-        List<Album> albums = albumDAL.getAlbumsByAlbumTitle(title);
-        return albums.stream().map(this::convertToDTO).collect(Collectors.toList());
+        return albumDAL.getAlbumsByAlbumTitle(title);
     }
 
     @Override
     public List<AlbumDTO> getAlbumsForHome() {
-        List<Album> albums = albumDAL.getAlbumsForHome();
-        return albums.stream().map(this::convertToDTOWithRelations).collect(Collectors.toList());
+        return albumDAL.getAlbumsForHome();
     }
 
-    private AlbumDTO convertToDTO(Album album) {
-        AlbumDTO albumDTO = new AlbumDTO();
-        albumDTO.setId(album.getId());
-        albumDTO.setAlbumName(album.getAlbumName());
-        return albumDTO;
+    public AlbumDTO getAlbumById(int id) {
+        AlbumDTO album = albumDAL.getAlbumById(id);
+        List<SongDTO> songs = album.getAlbumSongs();
+
+        OptionalDouble averageRating = songs.stream()
+                .mapToDouble(song -> {
+                    List<ReviewDTO> reviews = reviewDAL.getReviewsForSong(song.getId());
+                    return reviews != null && !reviews.isEmpty()
+                            ? reviews.stream().mapToDouble(ReviewDTO::getRating).average().orElse(0.0)
+                            : 0.0;
+                })
+                .average();
+
+        album.setAverageRating(averageRating.orElse(0.0));
+        return album;
     }
 
-    private AlbumDTO convertToDTOWithRelations(Album album) {
-        AlbumDTO albumDTO = convertToDTO(album);
-        albumDTO.setAlbumArtists(album.getAlbumArtists().stream()
-                .map(albumArtist -> convertToDTO(albumArtist.getArtist()))
-                .collect(Collectors.toList()));
-        return albumDTO;
-    }
-
-    private ArtistDTO convertToDTO(Artist artist) {
-        ArtistDTO artistDTO = new ArtistDTO();
-        artistDTO.setId(artist.getId());
-        artistDTO.setArtistName(artist.getArtistName());
-        return artistDTO;
+    public void addAlbum(AlbumDTO albumDTO) {
+        albumDAL.addAlbum(albumDTO);
     }
 }

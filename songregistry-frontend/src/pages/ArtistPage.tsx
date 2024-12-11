@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card.tsx";
+import { useNavigate } from "react-router-dom";
 
 interface Artist {
   id: number;
@@ -35,9 +36,18 @@ function ArtistPage() {
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);
   };
+  const navigate = useNavigate();
 
   const truncatedText =
     bioText.length > maxLength ? bioText.slice(0, maxLength) + "..." : bioText;
+
+  const handleSongClick = (id: number) => {
+    navigate(`/song/${id}`);
+  };
+
+  const handleAlbumClick = (id: number) => {
+    navigate(`/album/${id}`);
+  };
 
   useEffect(() => {
     const fetchArtist = async () => {
@@ -62,15 +72,18 @@ function ArtistPage() {
         <p>Loading...</p>
       ) : (
         <div className="w-full flex flex-col justify-center items-center mt-8">
-          <div className="w-4/5 flex">
+          <div className="w-4/5 flex" id="artistInfo">
             <img
               alt={artist?.artistName}
+              id="artistImage"
               className="w-60 h-60"
               src="https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
             />
             <div className="block text-left ml-5">
-              <p className="text-4xl ">{artist?.artistName}</p>
-              <p className="">
+              <p className="text-4xl" id="artistName">
+                {artist?.artistName}
+              </p>
+              <p className="" id="artistBio">
                 {isExpanded ? bioText : truncatedText}
                 {bioText.length > maxLength && (
                   <button
@@ -83,7 +96,7 @@ function ArtistPage() {
               </p>
             </div>
           </div>
-          <div className="w-4/5 flex flex-col mt-8">
+          <div className="w-4/5 flex flex-col mt-8" id="artistAlbums">
             <p className="text-4xl text-left">Albums</p>
             <div className="flex">
               {loading ? (
@@ -91,8 +104,11 @@ function ArtistPage() {
               ) : (
                 <div className="flex mt-5 justify-between">
                   {artist?.artistAlbums.map((album) => (
-                    <div>
-                      <Card>
+                    <div id="artistAlbums">
+                      <Card
+                        onClick={() => handleAlbumClick(album.id)}
+                        className="cursor-pointer artistAlbumCard"
+                      >
                         <CardHeader>
                           <img
                             alt={album.albumName}
@@ -108,16 +124,19 @@ function ArtistPage() {
               )}
             </div>
           </div>
-          <div className="w-4/5 flex flex-col mt-8">
+          <div className="w-4/5 flex flex-col mt-8" id="artistSongs">
             <p className="text-4xl text-left">Songs</p>
             <div className="flex">
               {loading ? (
                 <p>Loading...</p>
               ) : (
-                <div className="flex mt-5 justify-between">
+                <div className="flex mt-5 justify-between" id="artistSongs">
                   {artist?.artistSongs.map((song) => (
                     <div>
-                      <Card>
+                      <Card
+                        onClick={() => handleSongClick(song.id)}
+                        className="cursor-pointer artistSongCard"
+                      >
                         <CardHeader>
                           <img
                             alt={song.title}
