@@ -26,7 +26,18 @@ jobs:
 
       # Step 4: Install dependencies
       - name: Install dependencies
-        run: cd /home/runner/work && pnpm install
+        run: pnpm install
+        working-directory: ./
+
+      # Step 5 Install dependencies for main frontend
+      - name: Install dependencies for main frontend
+        run: pnpm install
+        working-directory: ./songregistry-frontend
+
+      # Step 6 Install dependencies for admin frontend
+      - name: Install dependencies for admin frontend
+        run: pnpm install
+        working-directory: ./songregistry-admin-frontend
 
       # Step 5: Run Cypress tests
       - name: Run Cypress tests
