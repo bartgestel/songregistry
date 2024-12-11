@@ -38,8 +38,10 @@ jobs:
       - name: Run Cypress tests
         uses: cypress-io/github-action@v5
         with:
-          build: cd songregistry-frontend && pnpm build
-          start: cd songregistry-frontend && pnpm start
+          build: pnpm build
+          start: pnpm start
+          working-directory: ./songregistry-frontend
           wait-on: http://localhost:5173
           wait-on-timeout: 120
           browser: chrome
+
