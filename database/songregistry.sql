@@ -60,6 +60,9 @@ INSERT INTO `album_artists` (`id`, `album_id`, `artist_id`) VALUES
 -- Gegevens worden geëxporteerd voor tabel `artists`
 --
 
+INSERT INTO `genres` (`id`, `genre_name`) VALUES
+    (1, 'Rap');
+
 INSERT INTO `songs` (`id`, `song_name`, `song_genre`, `album_id`) VALUES
     (3, 'IGOR\'S THEME', 1, 1),
 (4, 'EARFQUAKE', 1, 1);
@@ -68,8 +71,7 @@ INSERT INTO `songs` (`id`, `song_name`, `song_genre`, `album_id`) VALUES
 -- Gegevens worden geëxporteerd voor tabel `genres`
 --
 
-INSERT INTO `genres` (`id`, `genre_name`) VALUES
-(1, 'Rap');
+
 
 --
 -- Gegevens worden geëxporteerd voor tabel `reviews`
