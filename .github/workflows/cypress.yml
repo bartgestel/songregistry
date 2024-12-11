@@ -11,6 +11,15 @@ jobs:
   cypress:
     runs-on: ubuntu-latest
 
+    services:
+      mariadb:
+        image: mariadb:latest
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: songregistry
+          MYSQL_USER: root
+        ports:
+          - 3306:3306
     steps:
       # Step 1: Check out the code
       - name: Check out code
@@ -19,24 +28,50 @@ jobs:
       # Step 2: Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: 'pnpm' # Caches pnpm dependencies
 
       # Step 3: Install pnpm
       - name: Install pnpm
         run: npm install -g pnpm
 
-      # Step 4: Install dependencies
-      - name: Install dependencies
+      # Step 4: Install dependencies for the frontend
+      - name: Install dependencies for main frontend
         run: pnpm install
+        working-directory: ./songregistry-frontend
 
-      # Step 5: Run Cypress tests
+      # Step 5: Install dependencies for the backend (Maven)
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+
+      # Step 6: Build the backend with Maven
+      - name: Build backend with Maven
+        run: mvn -B clean package --file ./songregistry-backend/pom.xml
+
+      # Step 7: Start backend server
+      - name: Start backend
+        run: mvn spring-boot:run --file ./songregistry-backend/pom.xml &
+
+      # Step 8: Wait for MariaDB to be ready
+      - name: Wait for MariaDB to be ready
+        run: |
+          sleep 15  # Adjust the wait time to allow MariaDB to start up
+
+      # Step 9: Import the SQL file into MariaDB
+      - name: Import SQL file into MariaDB
+        run: |
+          mysql -h 127.0.0.1 -u root -proot songregistry < ./database/songregistry.sql
+        env:
+          MYSQL_ROOT_PASSWORD: root
+
+      # Step 10: Run Cypress tests
       - name: Run Cypress tests
         uses: cypress-io/github-action@v5
         with:
-          build: pnpm build
-          start: pnpm start
-          wait-on: http://localhost:3000
+          start: pnpm run dev
+          working-directory: ./songregistry-frontend
+          wait-on: http://localhost:5173
           wait-on-timeout: 120
           browser: chrome
