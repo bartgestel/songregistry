@@ -24,12 +24,7 @@ jobs:
       - name: Install pnpm
         run: npm install -g pnpm
 
-      # Step 4: Install dependencies
-      - name: Install dependencies
-        run: pnpm install
-        working-directory: ./
-
-      # Step 5 Install dependencies for main frontend
+      # Step 4 Install dependencies for main frontend
       - name: Install dependencies for main frontend
         run: pnpm install
         working-directory: ./songregistry-frontend
