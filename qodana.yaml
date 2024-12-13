@@ -3,4 +3,5 @@ linter: jetbrains/qodana-jvm:2024.2
 profile:
   name: qodana.recommended
 include:
-  - path: "songregistry-backend"
+  - paths:
+      - "songregistry-backend"
