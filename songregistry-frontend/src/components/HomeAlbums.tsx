@@ -50,7 +50,7 @@ function HomeArtists() {
         ) : (
           <div className="flex mt-5 justify-between">
             {albums.map((album) => (
-              <div>
+              <div key={album.id}>
                 <Card
                   onClick={() => handleClick(album.id)}
                   className="cursor-pointer albumCard"

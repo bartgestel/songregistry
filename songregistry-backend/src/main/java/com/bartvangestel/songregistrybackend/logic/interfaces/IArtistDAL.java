@@ -9,9 +9,5 @@ public interface IArtistDAL {
     List<ArtistDTO> getArtistsByName(String name);
     List<ArtistDTO> getArtistsForHome();
     ArtistDTO getArtistById(int id);
-
-    List<ArtistDTO> getArtistsBySongId(Integer id);
-
-    List<ArtistDTO> getArtistsByAlbumId(Integer id);
     void addArtist(ArtistDTO artist);
 }

@@ -49,16 +49,6 @@ public class ArtistDAL implements IArtistDAL {
 
     }
 
-    public List<ArtistDTO> getArtistsBySongId(Integer id) {
-        List<Artist> artists = artistRepository.findBySongArtists_Song_Id(id);
-        return artists.stream().map(this::convertToDTO).collect(java.util.stream.Collectors.toList());
-    }
-
-    public List<ArtistDTO> getArtistsByAlbumId(Integer id) {
-        List<Artist> artists = artistRepository.findByAlbumArtists_Album_Id(id);
-        return artists.stream().map(this::convertToDTO).collect(java.util.stream.Collectors.toList());
-    }
-
     public void addArtist(ArtistDTO artistDTO) {
         Artist artist = new Artist();
         artist.setArtistName(artistDTO.getArtistName());

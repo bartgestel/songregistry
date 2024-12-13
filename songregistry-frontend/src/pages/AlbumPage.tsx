@@ -91,7 +91,7 @@ function AlbumPage() {
                 ) : (
                   <div className="flex mt-5 justify-between" id="albumSongs">
                     {album?.albumSongs.map((song) => (
-                      <div>
+                      <div key={album.id}>
                         <Card
                           onClick={() => handleSongClick(song.id)}
                           className="cursor-pointer albumSongCard"
