@@ -19,8 +19,11 @@ public class User {
     @Column(name = "username", nullable = false)
     private String username;
 
-    @Column(name = "password", nullable = false)
-    private String password;
+    @Column(name = "hash", nullable = false)
+    private String hash;
+
+    @Column(name="salt", nullable = false)
+    private String salt;
 
     @OneToMany(mappedBy = "user")
     private Set<Review> reviews = new LinkedHashSet<>();
@@ -49,12 +52,20 @@ public class User {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    public String getHash() {
+        return hash;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setHash(String hash) {
+        this.hash = hash;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
 
     public Set<Review> getReviews() {
