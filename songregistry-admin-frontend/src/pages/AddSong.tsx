@@ -97,7 +97,30 @@ function AddSong() {
   const handleAddSong = async () => {
     const songName = songNameRef.current?.value;
     const albumId = album?.id || 0;
-    console.log(albumId);
+    if (!songName) {
+      const error = document.getElementById("nameError");
+      if (error) {
+        error.innerText = "Please fill out the song name";
+      }
+      return;
+    }
+
+    if (songArtists.length === 0) {
+      const error = document.getElementById("artistError");
+      if (error) {
+        error.innerText = "At least one artist is required";
+      }
+      return;
+    }
+
+    if (!album) {
+      const error = document.getElementById("albumError");
+      if (error) {
+        error.innerText = "Album is required";
+      }
+      return;
+    }
+
     const song: Song = {
       title: songName || "",
       albumId: albumId,
@@ -108,16 +131,18 @@ function AddSong() {
   };
 
   return (
-    <div>
-      <h1>Add Song</h1>
+    <div className="flex flex-col items-center">
+      <h1 className="text-2xl font-bold mb-4">Add Song</h1>
+      <label>Song name:</label>
       <input
         type="text"
         placeholder="Song Name"
         className="border-2 p-1"
         ref={songNameRef}
       />
-      <div className="flex">
-        <div>
+      <p className="text-red-600" id="nameError"></p>
+      <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center">
           <h2>Add artist to song</h2>
           <input
             type="text"
@@ -140,7 +165,7 @@ function AddSong() {
             ))}
           </div>
         </div>
-        <div>
+        <div className="flex flex-col items-center">
           <h2>Add song to album</h2>
           <input
             type="text"
@@ -155,7 +180,6 @@ function AddSong() {
             {searchResultAlbum.map((result) => (
               <div
                 className="searchitem"
-                key={result.albumId}
                 onClick={() => handleAddAlbum(result)}
               >
                 <p>{result.albumName}</p>
@@ -176,6 +200,7 @@ function AddSong() {
               </button>
             </div>
           ))}
+          <p className="text-red-600" id="artistError"></p>
         </div>
         <div>
           <h2>Selected album</h2>
@@ -187,6 +212,7 @@ function AddSong() {
               </button>
             </div>
           )}
+          <p className="text-red-600" id="albumError"></p>
         </div>
       </div>
       <div>
