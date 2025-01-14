@@ -1,8 +1,8 @@
 package com.bartvangestel.songregistrybackend.dal;
 
-import com.bartvangestel.songregistrybackend.DTO.ArtistDTO;
-import com.bartvangestel.songregistrybackend.DTO.ReviewDTO;
-import com.bartvangestel.songregistrybackend.DTO.SongDTO;
+import com.bartvangestel.songregistrybackend.logic.DTO.ArtistDTO;
+import com.bartvangestel.songregistrybackend.logic.DTO.ReviewDTO;
+import com.bartvangestel.songregistrybackend.logic.DTO.SongDTO;
 import com.bartvangestel.songregistrybackend.dal.model.Artist;
 import com.bartvangestel.songregistrybackend.dal.model.Review;
 import com.bartvangestel.songregistrybackend.dal.model.SongArtist;

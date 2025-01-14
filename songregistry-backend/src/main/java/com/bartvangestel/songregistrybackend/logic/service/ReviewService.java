@@ -1,6 +1,6 @@
 package com.bartvangestel.songregistrybackend.logic.service;
 
-import com.bartvangestel.songregistrybackend.DTO.ReviewDTO;
+import com.bartvangestel.songregistrybackend.logic.DTO.ReviewDTO;
 import com.bartvangestel.songregistrybackend.logic.interfaces.IReviewDAL;
 import org.springframework.stereotype.Service;
 

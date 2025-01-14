@@ -1,6 +1,6 @@
 package com.bartvangestel.songregistrybackend.logic.interfaces;
 
-import com.bartvangestel.songregistrybackend.DTO.ReviewDTO;
+import com.bartvangestel.songregistrybackend.logic.DTO.ReviewDTO;
 
 import java.util.List;
 

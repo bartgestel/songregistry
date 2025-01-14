@@ -1,6 +1,6 @@
 package com.bartvangestel.songregistrybackend.dal;
 
-import com.bartvangestel.songregistrybackend.DTO.ReviewDTO;
+import com.bartvangestel.songregistrybackend.logic.DTO.ReviewDTO;
 import com.bartvangestel.songregistrybackend.dal.model.Review;
 import com.bartvangestel.songregistrybackend.dal.model.Song;
 import com.bartvangestel.songregistrybackend.dal.repository.ReviewRepository;

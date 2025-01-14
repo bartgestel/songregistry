@@ -1,6 +1,6 @@
 package com.bartvangestel.songregistrybackend.presentation.controller;
 
-import com.bartvangestel.songregistrybackend.DTO.ArtistDTO;
+import com.bartvangestel.songregistrybackend.logic.DTO.ArtistDTO;
 import com.bartvangestel.songregistrybackend.logic.service.ArtistService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;

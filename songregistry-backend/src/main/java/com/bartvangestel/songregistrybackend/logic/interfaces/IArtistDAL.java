@@ -1,6 +1,6 @@
 package com.bartvangestel.songregistrybackend.logic.interfaces;
 
-import com.bartvangestel.songregistrybackend.DTO.ArtistDTO;
+import com.bartvangestel.songregistrybackend.logic.DTO.ArtistDTO;
 
 import java.util.List;
 
