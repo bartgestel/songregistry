@@ -19,11 +19,11 @@ public class User {
     @Column(name = "username", nullable = false)
     private String username;
 
-    @Column(name = "hash", nullable = false)
-    private String hash;
+    @Column(name = "salt", nullable = false, length = 32)
+    private byte[] salt; // Use byte[] for binary data
 
-    @Column(name="salt", nullable = false)
-    private String salt;
+    @Column(name = "password_hash", nullable = false, length = 64)
+    private String hash;
 
     @OneToMany(mappedBy = "user")
     private Set<Review> reviews = new LinkedHashSet<>();
@@ -60,11 +60,11 @@ public class User {
         this.hash = hash;
     }
 
-    public String getSalt() {
+    public byte[] getSalt() {
         return salt;
     }
 
-    public void setSalt(String salt) {
+    public void setSalt(byte[] salt) {
         this.salt = salt;
     }
 
