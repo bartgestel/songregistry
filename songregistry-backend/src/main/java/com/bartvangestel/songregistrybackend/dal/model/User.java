@@ -1,13 +1,18 @@
 package com.bartvangestel.songregistrybackend.dal.model;
 
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Collection;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements UserDetails{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -19,14 +24,16 @@ public class User {
     @Column(name = "username", nullable = false)
     private String username;
 
-    @Column(name = "salt", nullable = false, length = 32)
-    private byte[] salt; // Use byte[] for binary data
-
-    @Column(name = "password_hash", nullable = false, length = 64)
+    @Column(name = "hash", nullable = false)
     private String hash;
 
     @OneToMany(mappedBy = "user")
     private Set<Review> reviews = new LinkedHashSet<>();
+
+    @ManyToOne
+    @JoinColumn(name = "user_role_id", nullable = false)
+    private UserRole userRole;
+
 
     public Integer getId() {
         return id;
@@ -48,24 +55,42 @@ public class User {
         return username;
     }
 
+    @Override
+    public boolean isAccountNonExpired() {
+        return UserDetails.super.isAccountNonExpired();
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return UserDetails.super.isAccountNonLocked();
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return UserDetails.super.isCredentialsNonExpired();
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return UserDetails.super.isEnabled();
+    }
+
     public void setUsername(String username) {
         this.username = username;
     }
 
-    public String getHash() {
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(userRole.getName()));
+    }
+
+    public String getPassword() {
         return hash;
     }
 
     public void setHash(String hash) {
         this.hash = hash;
-    }
-
-    public byte[] getSalt() {
-        return salt;
-    }
-
-    public void setSalt(byte[] salt) {
-        this.salt = salt;
     }
 
     public Set<Review> getReviews() {

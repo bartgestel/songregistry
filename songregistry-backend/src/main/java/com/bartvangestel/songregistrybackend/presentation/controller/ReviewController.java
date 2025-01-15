@@ -1,6 +1,6 @@
 package com.bartvangestel.songregistrybackend.presentation.controller;
 
-import com.bartvangestel.songregistrybackend.DTO.ReviewDTO;
+import com.bartvangestel.songregistrybackend.logic.DTO.ReviewDTO;
 import com.bartvangestel.songregistrybackend.logic.service.ReviewService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;

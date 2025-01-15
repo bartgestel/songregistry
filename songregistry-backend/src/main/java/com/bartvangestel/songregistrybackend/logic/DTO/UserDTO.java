@@ -1,19 +1,22 @@
-package com.bartvangestel.songregistrybackend.DTO;
+package com.bartvangestel.songregistrybackend.logic.DTO;
 
 public class UserDTO {
     private int id;
     private String username;
     private String email;
     private String password;
+    private String email;
+    private byte[] salt;
 
     public UserDTO() {
     }
 
-    public UserDTO(int id, String username, String email, String password) {
+    public UserDTO(int id, String username, String password, String email) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
+        this.email = email;
     }
 
     public int getId() {
@@ -32,14 +35,6 @@ public class UserDTO {
         this.username = username;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -48,4 +43,19 @@ public class UserDTO {
         this.password = password;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public byte[] getSalt() {
+        return salt;
+    }
+
+    public void setSalt(byte[] salt) {
+        this.salt = salt;
+    }
 }

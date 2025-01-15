@@ -1,8 +1,8 @@
 package com.bartvangestel.songregistrybackend.logic.service;
 
-import com.bartvangestel.songregistrybackend.DTO.AlbumDTO;
-import com.bartvangestel.songregistrybackend.DTO.ReviewDTO;
-import com.bartvangestel.songregistrybackend.DTO.SongDTO;
+import com.bartvangestel.songregistrybackend.logic.DTO.AlbumDTO;
+import com.bartvangestel.songregistrybackend.logic.DTO.ReviewDTO;
+import com.bartvangestel.songregistrybackend.logic.DTO.SongDTO;
 import com.bartvangestel.songregistrybackend.logic.interfaces.IAlbumDAL;
 import com.bartvangestel.songregistrybackend.logic.interfaces.IAlbumService;
 import com.bartvangestel.songregistrybackend.logic.interfaces.IReviewDAL;

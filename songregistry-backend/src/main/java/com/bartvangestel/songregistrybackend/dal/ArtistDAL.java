@@ -1,15 +1,13 @@
 package com.bartvangestel.songregistrybackend.dal;
 
-import com.bartvangestel.songregistrybackend.DTO.AlbumDTO;
-import com.bartvangestel.songregistrybackend.DTO.ArtistDTO;
-import com.bartvangestel.songregistrybackend.DTO.SongDTO;
+import com.bartvangestel.songregistrybackend.logic.DTO.AlbumDTO;
+import com.bartvangestel.songregistrybackend.logic.DTO.ArtistDTO;
+import com.bartvangestel.songregistrybackend.logic.DTO.SongDTO;
 import com.bartvangestel.songregistrybackend.dal.repository.AlbumRepository;
 import com.bartvangestel.songregistrybackend.dal.repository.ArtistRepository;
 import com.bartvangestel.songregistrybackend.dal.repository.SongRepository;
-import com.bartvangestel.songregistrybackend.logic.interfaces.IAlbumDAL;
 import com.bartvangestel.songregistrybackend.logic.interfaces.IArtistDAL;
 import com.bartvangestel.songregistrybackend.dal.model.Artist;
-import com.bartvangestel.songregistrybackend.logic.interfaces.ISongDAL;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
