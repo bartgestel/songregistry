@@ -5,7 +5,7 @@ public class UserDTO {
     private String username;
     private String email;
     private String password;
-    private byte[] salt;
+    private String role;
 
     public UserDTO() {
     }
@@ -49,11 +49,11 @@ public class UserDTO {
         this.email = email;
     }
 
-    public byte[] getSalt() {
-        return salt;
+    public void setRole(String role) {
+        this.role = role;
     }
 
-    public void setSalt(byte[] salt) {
-        this.salt = salt;
+    public String getRole() {
+        return role;
     }
 }

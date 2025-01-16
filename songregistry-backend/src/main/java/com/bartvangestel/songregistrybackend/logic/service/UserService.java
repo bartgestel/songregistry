@@ -39,11 +39,7 @@ public class UserService {
         }
     }
 
-    public boolean registerUser(UserDTO userDTO) {
-        return true;
-    }
-
-    private boolean checkIfPasswordIsStrongEnough(String password) {
+    public boolean checkIfPasswordIsStrongEnough(String password) {
         boolean passwordLengthCheck = password.length() >= 14;
         boolean passwordContainsSpecialCharacterOrNumber =
                 password.matches(".*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>?].*") && password.matches(".*\\d.*");

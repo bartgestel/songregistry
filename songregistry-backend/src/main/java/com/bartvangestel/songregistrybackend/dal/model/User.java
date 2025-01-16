@@ -101,4 +101,12 @@ public class User implements UserDetails{
         this.reviews = reviews;
     }
 
+    public UserRole getRole() {
+        return userRole;
+    }
+
+    public void setRole(UserRole userRole) {
+        this.userRole = userRole;
+    }
+
 }
