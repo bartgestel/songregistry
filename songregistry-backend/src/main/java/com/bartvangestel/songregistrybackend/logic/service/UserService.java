@@ -17,13 +17,13 @@ import java.util.Set;
 
 @Service
 public class UserService {
-    /*
+
 
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
     private static final Set<String> BANNED_PASSWORDS = new HashSet<>();
 
     static {
-        try (InputStream inputStream = UserService.class.getClassLoader().getResourceAsStream("banned-passwords.txt")) {
+        try (InputStream inputStream = UserService.class.getClassLoader().getResourceAsStream("bannedPasswords.txt")) {
             if (inputStream == null) {
                 throw new RuntimeException("banned-passwords.txt not found in the resources folder");
             }
@@ -40,13 +40,7 @@ public class UserService {
     }
 
     public boolean registerUser(UserDTO userDTO) {
-        if (checkIfPasswordIsStrongEnough(userDTO.getPassword())) {
-            String hashedPassword = BCrypt.hashpw(userDTO.getPassword(), BCrypt.gensalt());
-            userDTO.setPassword(hashedPassword);
-            return true;
-        } else {
-            return false;
-        }
+        return true;
     }
 
     private boolean checkIfPasswordIsStrongEnough(String password) {
@@ -56,5 +50,5 @@ public class UserService {
         boolean isBannedPassword = BANNED_PASSWORDS.contains(password);
 
         return passwordLengthCheck && passwordContainsSpecialCharacterOrNumber && !isBannedPassword;
-    }  */
+    }
 }

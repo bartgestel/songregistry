@@ -24,14 +24,14 @@ public class User implements UserDetails{
     @Column(name = "username", nullable = false)
     private String username;
 
-    @Column(name = "hash", nullable = false)
-    private String hash;
+    @Column(name = "password", nullable = false)
+    private String password;
 
     @OneToMany(mappedBy = "user")
     private Set<Review> reviews = new LinkedHashSet<>();
 
     @ManyToOne
-    @JoinColumn(name = "user_role_id", nullable = false)
+    @JoinColumn(name = "role_id", nullable = false)
     private UserRole userRole;
 
 
@@ -86,11 +86,11 @@ public class User implements UserDetails{
     }
 
     public String getPassword() {
-        return hash;
+        return password;
     }
 
     public void setHash(String hash) {
-        this.hash = hash;
+        this.password = hash;
     }
 
     public Set<Review> getReviews() {

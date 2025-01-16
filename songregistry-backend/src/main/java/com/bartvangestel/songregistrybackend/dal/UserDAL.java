@@ -18,7 +18,7 @@ public class UserDAL implements IUserDAL {
         User user = new User();
         user.setEmail(userDTO.getEmail());
         user.setUsername(userDTO.getUsername());
-        user.setHash(userDTO.getHash());
+        user.setHash(userDTO.getPassword());
         userRepository.save(user);
     }
 

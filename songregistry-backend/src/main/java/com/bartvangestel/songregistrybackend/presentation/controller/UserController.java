@@ -28,19 +28,11 @@ public class UserController {
     })
     @PostMapping("/register")
     public ResponseEntity<Void> registerUser(@RequestBody UserDTO userDTO) {
-        if(userService.registerUser(userDTO)){
-            return ResponseEntity.status(201).build();
-        }else{
-            return ResponseEntity.badRequest().build();
-        }
+        return null;
     }
 
     @PostMapping("/login")
     public ResponseEntity<Void> loginUser(@RequestBody UserDTO userDTO) {
-        if(userService.loginUser(userDTO)){
-            return ResponseEntity.status(200).build();
-        }else{
-            return ResponseEntity.badRequest().build();
-        }
+        return null;
     }
 }
