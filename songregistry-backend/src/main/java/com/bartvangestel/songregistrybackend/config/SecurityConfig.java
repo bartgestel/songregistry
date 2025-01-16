@@ -15,6 +15,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
+
+import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 public class SecurityConfig {
@@ -28,16 +33,30 @@ public class SecurityConfig {
     }
 
     @Bean
+    public CorsFilter corsFilter() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowCredentials(true);
+        config.addAllowedOriginPattern("*"); // Allow all origins
+        config.addAllowedHeader("*"); // Allow all headers
+        config.addAllowedMethod("*"); // Allow all methods
+        source.registerCorsConfiguration("/**", config);
+        return new CorsFilter(source);
+    }
+
+    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
+                .cors(withDefaults()) // Enable CORS with default configuration
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers(HttpMethod.GET,
-                             "/albums/**", "/artists/**", "/songs/**", "/reviews/song/**", "/search/**", "/swagger-ui/**", "/v3/api-docs/**"
-                    ).permitAll()
-                            .requestMatchers(HttpMethod.POST, "/users/**").permitAll();
+                                    "/albums/**", "/artists/**", "/songs/**", "/reviews/song/**", "/search/**", "/swagger-ui/**", "/v3/api-docs/**"
+                            ).permitAll()
+                            .requestMatchers(HttpMethod.POST, "/users/**").permitAll().requestMatchers(HttpMethod.POST, "/reviews/**").hasAnyRole("USER", "ADMIN");
                 }).authorizeHttpRequests(auth -> {
                     auth.anyRequest().authenticated();
                 }).sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .addFilterBefore(corsFilter(), UsernamePasswordAuthenticationFilter.class) // Add CORS filter before other filters
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();

@@ -86,6 +86,7 @@ public class SongDAL implements ISongDAL {
                 reviewDTO.setId(review.getId());
                 reviewDTO.setReview(review.getText());
                 reviewDTO.setRating(review.getRating());
+                reviewDTO.setUser(review.getUser().getUsername());
                 reviewDTOS.add(reviewDTO);
             }
         }
