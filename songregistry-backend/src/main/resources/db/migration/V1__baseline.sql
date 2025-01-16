@@ -1,10 +1,3 @@
-/*M!999999\- enable the sandbox mode */ 
--- MariaDB dump 10.19-11.6.2-MariaDB, for Win64 (AMD64)
---
--- Host: 127.0.0.1    Database: songregistry
--- ------------------------------------------------------
--- Server version	11.6.2-MariaDB-ubu2404
-
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;

@@ -16,6 +16,7 @@ function Signup() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordValid, setPasswordValid] = useState(false);
+  const [error, setError] = React.useState("");
   const [bannedPasswords, setBannedPasswords] = useState<string[]>([]);
 
   useEffect(() => {
@@ -66,12 +67,20 @@ function Signup() {
 
   async function userRegistration(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const user: User = {
-      email: email,
-      username: username,
-      password: password,
-    };
-    await axios.post("http://localhost:8080/users/register", user);
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/users/register",
+        {
+          username,
+          email,
+          password,
+        },
+      );
+      localStorage.setItem("token", response.data);
+      window.location.href = "/";
+    } catch (error) {
+      setError(error);
+    }
   }
 
   return (
