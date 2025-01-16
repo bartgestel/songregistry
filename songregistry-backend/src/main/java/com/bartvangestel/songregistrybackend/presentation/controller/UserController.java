@@ -1,5 +1,8 @@
 package com.bartvangestel.songregistrybackend.presentation.controller;
 
+import com.bartvangestel.songregistrybackend.auth.AuthenticationResponse;
+import com.bartvangestel.songregistrybackend.logic.DTO.AuthDTO;
+import com.bartvangestel.songregistrybackend.logic.DTO.RegisterDTO;
 import com.bartvangestel.songregistrybackend.logic.DTO.UserDTO;
 import com.bartvangestel.songregistrybackend.logic.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -27,20 +30,13 @@ public class UserController {
             @ApiResponse(responseCode = "400", description = "Invalid input"),
     })
     @PostMapping("/register")
-    public ResponseEntity<Void> registerUser(@RequestBody UserDTO userDTO) {
-        if(userService.registerUser(userDTO)){
-            return ResponseEntity.status(201).build();
-        }else{
-            return ResponseEntity.badRequest().build();
-        }
+    public ResponseEntity<AuthenticationResponse> registerUser(@RequestBody RegisterDTO registerDTO) {
+        return ResponseEntity.ok(userService.registerUser(registerDTO));
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Void> loginUser(@RequestBody UserDTO userDTO) {
-        if(userService.loginUser(userDTO)){
-            return ResponseEntity.status(200).build();
-        }else{
-            return ResponseEntity.badRequest().build();
-        }
+    public ResponseEntity<AuthenticationResponse> loginUser(@RequestBody AuthDTO authDTO) {
+        return ResponseEntity.ok(userService.loginUser(authDTO));
+
     }
 }
