@@ -16,6 +16,7 @@ interface Review {
   id: number;
   review: string;
   rating: number;
+  user: string;
 }
 
 interface ReviewSheetProps {
@@ -59,7 +60,10 @@ function ReviewSheet({ reviews }: ReviewSheetProps) {
             {reviewList.map((review) => (
               <div key={review.id} className="p-2 mb-6 bg-white">
                 <p>{review.review}</p>
-                <ReviewStars rating={review.rating} />
+                <div className="flex justify-between items-center">
+                  <ReviewStars rating={review.rating} />
+                  <p className="text-xs text-gray-500">{review.user}</p>
+                </div>
               </div>
             ))}
           </div>
