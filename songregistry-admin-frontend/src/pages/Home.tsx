@@ -12,7 +12,7 @@ function Home() {
         <Button className="w-52">Add Album</Button>
       </a>
       <a href="/song" className="mb-1">
-        <Button className="w-52">Add Artist</Button>
+        <Button className="w-52">Add Song</Button>
       </a>
     </div>
   );
