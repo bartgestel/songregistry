@@ -1,4 +1,4 @@
-package com.bartvangestel.songregistrybackend.DTO;
+package com.bartvangestel.songregistrybackend.logic.DTO;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 

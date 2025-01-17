@@ -1,7 +1,6 @@
 package com.bartvangestel.songregistrybackend.logic.interfaces;
 
-import com.bartvangestel.songregistrybackend.DTO.AlbumDTO;
-import com.bartvangestel.songregistrybackend.dal.model.Album;
+import com.bartvangestel.songregistrybackend.logic.DTO.AlbumDTO;
 
 import java.util.List;
 

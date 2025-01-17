@@ -1,8 +1,7 @@
 package com.bartvangestel.songregistrybackend.presentation.controller;
 
-import com.bartvangestel.songregistrybackend.DTO.SongDTO;
+import com.bartvangestel.songregistrybackend.logic.DTO.SongDTO;
 import com.bartvangestel.songregistrybackend.logic.service.SongService;
-import com.bartvangestel.songregistrybackend.dal.model.Song;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

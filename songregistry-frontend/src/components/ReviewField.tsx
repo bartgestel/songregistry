@@ -34,14 +34,34 @@ function ReviewField({ reloadReviews }: { reloadReviews: () => void }) {
   };
 
   async function postReview() {
+    const token = localStorage.getItem("token");
+    console.log(token);
+    if (reviewTextRef.current?.value === "") {
+      const error = document.getElementById("error");
+      error!.textContent = "Review cannot be empty";
+      return;
+    }
+    if (ratingValue === 0) {
+      const error = document.getElementById("error");
+      error!.textContent = "Rating cannot be empty";
+      return;
+    }
+    if (token === null) {
+      const error = document.getElementById("error");
+      error!.textContent = "You must be logged in to post a review";
+      return;
+    }
     const review: Review = {
       review: reviewTextRef.current?.value || "",
       rating: ratingValue,
       songId: songId,
     };
-    console.log(review);
     // Post review to backend
-    await axios.post("http://localhost:8080/reviews", review);
+    await axios.post("http://localhost:8080/reviews", review, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     reloadReviews();
   }
   return (
@@ -56,7 +76,8 @@ function ReviewField({ reloadReviews }: { reloadReviews: () => void }) {
         className="resize-none bg-white"
         placeholder="Write your review here"
       />
-      <Button className="bg-white hover:bg-slate-500" onClick={postReview}>
+      <p id="error" className="text-red-600"></p>
+      <Button className=" hover:bg-slate-500" onClick={postReview}>
         Post review
       </Button>
     </div>

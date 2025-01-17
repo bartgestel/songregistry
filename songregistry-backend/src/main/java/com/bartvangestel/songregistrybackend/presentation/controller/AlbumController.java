@@ -1,6 +1,6 @@
 package com.bartvangestel.songregistrybackend.presentation.controller;
 
-import com.bartvangestel.songregistrybackend.DTO.AlbumDTO;
+import com.bartvangestel.songregistrybackend.logic.DTO.AlbumDTO;
 import com.bartvangestel.songregistrybackend.logic.service.AlbumService;
 import org.springframework.web.bind.annotation.*;
 

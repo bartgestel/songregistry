@@ -51,6 +51,16 @@ function AddAlbum() {
 
   const handleAddAlbum = async () => {
     const albumName = albumNameRef.current?.value;
+    if (!albumName) {
+      document.getElementById("nameError")!.innerHTML =
+        "Album name is required";
+      return;
+    }
+    if (albumArtists.length === 0) {
+      document.getElementById("artistError")!.innerHTML =
+        "At least one artist is required";
+      return;
+    }
     const album: Album = {
       albumName: albumName || "",
       albumArtists: albumArtists,
@@ -59,17 +69,19 @@ function AddAlbum() {
   };
 
   return (
-    <div>
-      <h1>Add Album</h1>
+    <div className="flex flex-col items-center">
+      <h1 className="text-2xl font-bold mb-4">Add Album</h1>
+      <label>Album Name:</label>
       <input
         type="text"
         placeholder="Album Name"
         className="border-2 p-1"
         ref={albumNameRef}
       />
-      <div className="flex">
-        <div>
-          <h2>Add artist to album</h2>
+      <p className="text-red-600" id="nameError"></p>
+      <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center">
+          <h2 className="">Add artist to album</h2>
           <input
             type="text"
             placeholder="Search for artist"
@@ -104,6 +116,7 @@ function AddAlbum() {
               </button>
             </div>
           ))}
+          <p className="text-red-600" id="artistError"></p>
         </div>
       </div>
       <div>

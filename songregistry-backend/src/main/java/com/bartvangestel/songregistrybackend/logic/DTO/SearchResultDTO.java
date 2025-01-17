@@ -1,4 +1,4 @@
-package com.bartvangestel.songregistrybackend.DTO;
+package com.bartvangestel.songregistrybackend.logic.DTO;
 
 public class SearchResultDTO {
     private String type;

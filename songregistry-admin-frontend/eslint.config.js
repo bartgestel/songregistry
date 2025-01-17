@@ -1,28 +1,51 @@
-import js from '@eslint/js'
-import globals from 'globals'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
-import tseslint from 'typescript-eslint'
+import globals from "globals";
+import tseslint from "@typescript-eslint/eslint-plugin";
+import tsParser from "@typescript-eslint/parser";
+import pluginJs from "@eslint/js";
+import reactPlugin from "eslint-plugin-react";
 
-export default tseslint.config(
-  { ignores: ['dist'] },
-  {
-    extends: [js.configs.recommended, ...tseslint.configs.recommended],
-    files: ['**/*.{ts,tsx}'],
-    languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
+/** @type {import('eslint').Linter.Config[]} */
+export default [
+    {
+        ignores: ["src/components/ui/**"], // Ensure this is at the top level
     },
-    plugins: {
-      'react-hooks': reactHooks,
-      'react-refresh': reactRefresh,
+    {
+        files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],
+        languageOptions: {
+            parser: tsParser,
+            globals: globals.browser,
+            parserOptions: {
+                ecmaFeatures: {
+                    jsx: true,
+                },
+            },
+        },
+        plugins: {
+            "@typescript-eslint": tseslint,
+            react: reactPlugin,
+        },
+        rules: {
+            ...pluginJs.configs.recommended.rules,
+            ...tseslint.configs.recommended.rules,
+            ...reactPlugin.configs.recommended.rules,
+            "react/react-in-jsx-scope": "off", // Disable the rule
+        },
+        settings: {
+            react: {
+                version: "detect",
+            },
+        },
     },
-    rules: {
-      ...reactHooks.configs.recommended.rules,
-      'react-refresh/only-export-components': [
-        'warn',
-        { allowConstantExport: true },
-      ],
+    {
+        // Ignore Cypress test files and other specified files
+        ignores: [
+            "*.config.js",  // Ignore config files
+            "*.config.ts",  // Ignore config files
+            "*.config.cjs",  // Ignore config files
+            "**/*cy.js",    // Ignore Cypress test files
+            "**/*.spec.js", // Ignore test files
+            "**/*.spec.ts", // Ignore TypeScript test files
+            "**/*.cy.ts",   // Ignore Cypress test files in TypeScript
+        ],
     },
-  },
-)
+];

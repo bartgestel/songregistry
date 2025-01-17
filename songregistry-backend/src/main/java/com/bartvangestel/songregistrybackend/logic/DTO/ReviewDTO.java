@@ -1,4 +1,4 @@
-package com.bartvangestel.songregistrybackend.DTO;
+package com.bartvangestel.songregistrybackend.logic.DTO;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -8,6 +8,7 @@ public class ReviewDTO {
     private int songId;
     private String review;
     private Double rating;
+    private String user;
 
     public ReviewDTO() {
     }
@@ -49,5 +50,13 @@ public class ReviewDTO {
 
     public void setRating(Double rating) {
         this.rating = rating;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 }
